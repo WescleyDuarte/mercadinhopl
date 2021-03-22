@@ -1,8 +1,10 @@
+import java.util.Calendar;
+
 class Compra{
 	int codigo;
 	int quantidade;
 	float valorTotal;
-	Date data;
+	Calender data;
 
 	public void cadastrar(Compra compra){
 		//Cadastrar a compra no BD para gerar nota fiscal.
