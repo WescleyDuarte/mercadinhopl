@@ -9,7 +9,7 @@ class ItemCompra{
 	public void alterar(ItemCompra itemCompra){
 		codigoProduto = itemCompra.codigoProduto;
 		codigoCompra = itemCompra.codigoCompra;
-		quantidade = itemCompra.codigoCompra;
+		quantidade = itemCompra.quantidade;
 	}
 	public void remover(ItemCompra itemCompra){
 		//remove um item da quantidade.
