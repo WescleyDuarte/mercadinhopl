@@ -9,11 +9,11 @@ class Caixa{
 	}
 
 	public void alterar(Caixa caixa){
-		nome = caiax.nome;
+		nome = caixa.nome;
 		idade = caixa.idade;
 		sexo = caixa.sexo;
 		salario = caixa.salario;
-		//Enviar alterações para o BD
+		//Enviar alteraÃ§Ãµes para o BD
 	}
 	public void deletar(Caixa caixa){
 		//Deletar do BD
