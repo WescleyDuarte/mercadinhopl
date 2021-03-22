@@ -7,7 +7,7 @@ class Compra{
 	public void cadastrar(Compra compra){
 		//Cadastrar a compra no BD para gerar nota fiscal.
 	}
-	public void deletar(Compra comp){
+	public void deletar(Compra compra){
 		//Deletar do BD.
 
 	}
