@@ -3,7 +3,7 @@ class ItemCompra{
 	int codigoCompra;
 	int quantidade;
 
-	public void adicionar(ItemCompra itemcompra){
+	public void adicionar(ItemCompra itemCompra){
 		//adicionar o item na compra
 	}
 	public void alterar(ItemCompra itemCompra){
@@ -11,7 +11,7 @@ class ItemCompra{
 		codigoCompra = itemCompra.codigoCompra;
 		quantidade = itemCompra.codigoCompra;
 	}
-	public void remover(ItemCompra itemcompra){
+	public void remover(ItemCompra itemCompra){
 		//remove um item da quantidade.
 	}
 
