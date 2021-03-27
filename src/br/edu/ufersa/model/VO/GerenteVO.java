@@ -1,6 +1,5 @@
 package VO;
 public class GerenteVO{
-	
 	private String nome;
 	private int idade;
 	private String sexo;
