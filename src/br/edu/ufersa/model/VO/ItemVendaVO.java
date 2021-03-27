@@ -1,6 +1,7 @@
 package VO;
 
 public class ItemVendaVO{
+	
 	private int codigoProduto; // codigo do produto a ser vendido
 	private int codigoVenda; // codigo da venda final
 	private int quantidade;
