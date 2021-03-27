@@ -48,7 +48,7 @@ public class CaixaVO{
 		}
 		else System.out.println("Salário invalido!");
 	}
-
+	
 	public String toString() {
 		String out = "";
 
@@ -76,7 +76,5 @@ public class CaixaVO{
 	public CaixaVO buscar(String nome){
 		//Buscar caixa baseado no nome do Caixa
 		//Retornar Caixa;	
-	}
-		
-
+	}	
 }

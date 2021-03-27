@@ -76,7 +76,5 @@ public class CompraVO{
 		data = compra.data;
 
 		//alterar os dados e enviar novamente para o BD
-	
-	}
-	
+		}
 }
