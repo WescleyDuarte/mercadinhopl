@@ -4,7 +4,7 @@ class Compra{
 	int codigo;
 	int quantidade;
 	float valorTotal;
-	Calender data;
+	Calendar data;
 
 	public void cadastrar(Compra compra){
 		//Cadastrar a compra no BD para gerar nota fiscal.
