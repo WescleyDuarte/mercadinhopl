@@ -1,25 +1,40 @@
-package VO;
+package mercadinhopl.model.VO;
 
-public class ItemVendaVO{
-	private int codigoProduto; // codigo do produto a ser vendido
+import java.io.*;
+
+public class ItemVendaVO implements Serializable {
+
+	private static final long serialVersionUID = 5L;
+
+	
 	private int codigoVenda; // codigo da venda final
-	private int quantidade;
-	private String formaDeVenda; // KG ou Unidade
+	private float quantidade;
+	private ProdutoVO produto;
 
-	public int getCodigoProduto() {
-		return codigoProduto;
+	public ItemVendaVO() {
+
 	}
 
-	public void setCodigoProtudo(int codigoProduto) {
-		if(codigoProduto > 0) {
-			this.codigoProduto = codigoProduto;
-		}
-		else System.out.println("Codigo do produto invalido!");
+	public ItemVendaVO(int codigoVenda, int quantidade, ProdutoVO produto) {
+
+		setCodigoVenda(codigoVenda);
+		setQuantidade(quantidade);
+		setProduto(produto);
 	}
 
 	public int getCodigoVenda() {
 		return codigoVenda;
 	}
+
+	public float getQuantidade() {
+		return quantidade;
+	}
+
+	public ProdutoVO getProduto(){
+		return produto;
+
+	}
+
 
 	public void setCodigoVenda(int codigoVenda) {
 		if(codigoVenda > 0) {
@@ -28,45 +43,29 @@ public class ItemVendaVO{
 		else System.out.println("Codigo de venda invalido!");
 	}
 
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		if(quantidade > 0) {
-			this.quantidade = quantidade;
+	public void setQuantidade(float quantidadeNew) {
+		if(quantidadeNew > 0) {
+			this.quantidade = quantidadeNew;
 		}
 		else System.out.println("Quantidade inválida!");
-
-	public String getFormaDeVenda() {
-		return formaDeVenda;
 	}
 
-	public void setFormaDeVenda(String formaDeVenda) {
-		if(formaDeVenda.equalsIgnoreCase("KG") || formaDeVenda.equalsIgnoreCase("Unidade")) {
-			this.formaDeVenda = formaDeVenda;
+	public void setProduto(ProdutoVO produto) {
+		if(produto != null) {
+			
+			this.produto = produto;
 		}
-		else System.out.println("Forma de venda invalida!");
+		else System.out.println("Produto invalido!");
 	}
+
 
 	public String toString() {
 		String out = "";
 
-		out = out + "\n" + "Codigo Produto: " + codigoProduto;
 		out = out + "\n" + "Codigo Venda: " + codigoVenda;
 		out = out + "\n" + "Quantidade: " + quantidade;
-		out = out + "\n" + "Forma de Venda: " + formaDeVenda;
-	}
+		out = out + "\n" + "Produto: " + produto;
 
-	public void adicionar(ItemVendaVO itemVenda){
-		// adiciona um item na venda
-	}
-
-	public void remover(ItemVendaVO itemVenda){
-		// remove um item da venda
-	}
-
-	public void alterar(ItemVendaVO itemVenda){
-		// altera um item da venda
+		return out;
 	}
 }

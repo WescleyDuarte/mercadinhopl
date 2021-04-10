@@ -1,12 +1,41 @@
-package VO;
-public class CaixaVO{
+package mercadinhopl.model.VO;
+
+import java.io.Serializable;
+
+public class CaixaVO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private String nome;
 	private int idade;
 	private String sexo;
 	private float salario;
 
+	public CaixaVO() {
+
+	}
+
+	public CaixaVO(String nome, int idade, String sexo, float salario) {
+		setNome(nome);
+		setIdade(idade);
+		setSexo(sexo);
+		setSalario(salario);
+	}
+
 	public String getNome() {
 		return nome;
+	}
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public float getSalario() {
+		return salario;
 	}
 
 	public void setNome(String nome) {
@@ -15,20 +44,12 @@ public class CaixaVO{
 		}
 		else System.out.println("Nome invalido!");
 	}
-
-	public int getIdade() {
-		return idade;
-	}
-
+	
 	public void setIdade(int idade) {
 		if(idade > 0) {
 			this.idade = idade;
 		}
 		else System.out.println("Idade invalida!");
-	}
-
-	public String getSexo() {
-		return sexo;
 	}
 
 	public void setSexo(String sexo) {
@@ -38,17 +59,13 @@ public class CaixaVO{
 		else System.out.println("Sexo invalido!");
 	}
 
-	public float getSalario() {
-		return salario;
-	}
-
 	public void setSalario(float salario) {
 		if(salario > 1000) {
 			this.salario = salario;
 		}
 		else System.out.println("Salário invalido!");
 	}
-	
+
 	public String toString() {
 		String out = "";
 
@@ -56,25 +73,7 @@ public class CaixaVO{
 		out = out + "\n" + "Idade: " + idade;
 		out = out + "\n" + "Sexo: " + sexo;
 		out = out + "\n" + "Salario: " + salario;
-	}
 
-	public void cadastrar(CaixaVO caixa){
-		//Enviar o cadastro do caixa para o BD
+		return out;
 	}
-
-	public void alterar(CaixaVO caixa){
-		nome = caixa.nome;
-		idade = caixa.idade;
-		sexo = caixa.sexo;
-		salario = caixa.salario;
-		//Enviar alterações para o BD
-	}
-	public void deletar(CaixaVO caixa){
-		//Deletar do BD
-
-	}
-	public CaixaVO buscar(String nome){
-		//Buscar caixa baseado no nome do Caixa
-		//Retornar Caixa;	
-	}	
 }

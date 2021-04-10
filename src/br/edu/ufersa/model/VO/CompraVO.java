@@ -1,25 +1,48 @@
-package VO;
+package mercadinhopl.model.VO;
+import java.io.Serializable;
 import java.util.*;
 
-public class CompraVO{
+public class CompraVO implements Serializable{
+
+	static final long serialVersionUID = 2L;
+
 	private int codigo;
 	private int quantidade;
 	private float valorTotal;
-	private Calendar data;
+	private Calendar data = Calendar.getInstance();
+
+	public CompraVO() {
+
+	}
+
+	public CompraVO(int codigo, int quantidade, float valorTotal, Date data) {
+		setCodigo(codigo);
+		setQuantidade(quantidade);
+		setValorTotal(valorTotal);
+		setData(data);
+	}
 
 	public int getCodigo() {
 		return codigo;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public float getValorTotal() {
+		return valorTotal;
+	}
+
+	public Calendar getData() {
+		return data;
 	}
 
 	public void setCodigo(int codigo) {
 		if(codigo > 0) {
 			this.codigo = codigo;
 		}
-		else System.out.println("Codigo invalido!")
-	}
-
-	public int getQuantidade() {
-		return quantidade;
+		else System.out.println("Codigo invalido!");
 	}
 
 	public void setQuantidade(int quantidade) {
@@ -29,10 +52,6 @@ public class CompraVO{
 		else System.out.println("Quantidade inválida!");
 	}
 
-	public float getValorTotal() {
-		return valorTotal;
-	}
-
 	public void setValorTotal(float valorTotal) {
 		if(valorTotal > 0) {
 			this.valorTotal = valorTotal;
@@ -40,15 +59,10 @@ public class CompraVO{
 		else System.out.println("Valor total inválido!");
 	}
 
-	public Calendar getData() {
-		return data;
-	}
-
-	public void setData(Calendar data) {
-		if(data != null) {
-			this.data = data;
-		}
-		else System.out.println("Data invalida!")
+	public void setData(Date data) {
+		if(data != null)
+			this.data.setTime(data);
+		else System.out.println("Data inválida!");
 	}
 
 	public String toString() {
@@ -57,24 +71,7 @@ public class CompraVO{
 		out = out + "\n" + "Código: " + codigo;
 		out = out + "\n" + "Quantidade: " + quantidade;
 		out = out + "\n" + "Valor Total: " + valorTotal;
-		out = out + "\n" + "Data: " + data;
+		out = out + "\n" + "Data: " + data.getTime();
+		return out;
 	}
-
-	public void cadastrar(CompraVO compra){
-		//Cadastrar a compra no BD para gerar nota fiscal.
-	}
-	public void deletar(CompraVO compra){
-		//Deletar do BD.
-
-	}
-
-	
-	public void alterar(CompraVO compra){ 
-		codigo = compra.codigo;
-		quantidade = compra.quantidade;
-		valorTotal = compra.valorTotal;
-		data = compra.data;
-
-		//alterar os dados e enviar novamente para o BD
-		}
 }

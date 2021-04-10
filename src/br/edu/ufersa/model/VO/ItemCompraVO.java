@@ -1,11 +1,35 @@
-package VO;
-public class ItemCompraVO{
+package mercadinhopl.model.VO;
+
+import java.io.*;
+
+public class ItemCompraVO implements Serializable{
+
+	private static final long serialVersionUID = 4L;
+
 	private int codigoProduto;
 	private int codigoCompra;
 	private int quantidade;
 
+	public ItemCompraVO() {
+
+	}
+
+	public ItemCompraVO(int codigoProduto, int codigoCompra, int quantidade) {
+		setCodigoProtudo(codigoProduto);
+		setCodigoCompra(codigoCompra);
+		setQuantidade(quantidade);
+	}
+
 	public int getCodigoProduto() {
 		return codigoProduto;
+	}
+	
+	public int getCodigoCompra() {
+		return codigoCompra;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
 	}
 
 	public void setCodigoProtudo(int codigoProduto) {
@@ -13,10 +37,6 @@ public class ItemCompraVO{
 			this.codigoProduto = codigoProduto;
 		}
 		else System.out.println("Codigo do produto invalido!");
-	}
-	
-	public int getCodigoCompra() {
-		return codigoCompra;
 	}
 
 	public void setCodigoCompra(int codigoCompra) {
@@ -26,16 +46,12 @@ public class ItemCompraVO{
 		else System.out.println("Codigo de compra invalido!");
 	}
 
-	public int getQuantidade() {
-		return quantidade;
-	}
-
 	public void setQuantidade(int quantidade) {
 		if(quantidade > 0) {
 			this.quantidade = quantidade;
 		}
 		else System.out.println("Quantidade inválida!");
-
+	}
 
 	public String toString() {
 		String out = "";
@@ -43,18 +59,6 @@ public class ItemCompraVO{
 		out = out + "\n" + "Codigo Produto: " + codigoProduto;
 		out = out + "\n" + "Codigo Compra: " + codigoCompra;
 		out = out + "\n" + "Quantidade: " + quantidade;
+		return out;
 	}
-
-	public void adicionar(ItemCompraVO itemCompra){
-		//adicionar o item na compra
-	}
-	public void alterar(ItemCompraVO itemCompra){
-		codigoProduto = itemCompra.codigoProduto;
-		codigoCompra = itemCompra.codigoCompra;
-		quantidade = itemCompra.quantidade;
-	}
-	public void remover(ItemCompraVO itemCompra){
-		//remove um item da quantidade.
-	}
-
 }
