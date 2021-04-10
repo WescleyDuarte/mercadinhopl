@@ -1,23 +1,44 @@
-package VO;
-public class TipoVO{
+package mercadinhopl.model.VO;
+
+import java.io.Serializable;
+
+public class TipoVO implements Serializable {
+
+	private static final long serialVersionUID = 7L;
 
 	private int codigo;
 	private String nome;
 	private String formaDeVenda;
 
-	public int getCodigoo() {
-		return codigo;
+	// CONSTRUTORES
+	public TipoVO() {
 	}
 
-	public void setCodigo(int codigo) {
-		if(codigo > 0) {
-			this.codigo = codigo;
-		}
-		else System.out.println("Codigo invalido!")
+	public TipoVO(int codigo,String nome,String formaDeVenda){
+		setCodigo(codigo);
+		setNome(nome);
+		setFormaDeVenda(formaDeVenda);
+	}
+
+	// GETS
+	public int getCodigo() {
+		return codigo;
 	}
 	
 	public String getnome() {
 		return nome;
+	}
+
+	public String getFormaDeVenda() {
+		return formaDeVenda;
+	}
+
+	// SETS
+	public void setCodigo(int codigo) {
+		if(codigo > 0) {
+			this.codigo = codigo;
+		}
+		else System.out.println("Codigo invalido!");
 	}
 
 	public void setNome(String nome) {
@@ -27,10 +48,6 @@ public class TipoVO{
 		else System.out.println("Nome invalido!");
 	}
 
-	public String getFormaDeVenda() {
-		return formaDeVenda;
-	}
-
 	public void setFormaDeVenda(String formaDeVenda) {
 		if(formaDeVenda.equalsIgnoreCase("KG") || formaDeVenda.equalsIgnoreCase("Unidade")) {
 			this.formaDeVenda = formaDeVenda;
@@ -38,34 +55,14 @@ public class TipoVO{
 		else System.out.println("Forma de venda invalida!");
 	}
 
+	// TOSTRING
 	public String toString() {
 		String out = "";
 
 		out = out + "\n" + "Codigo: " + codigo;
 		out = out + "\n" + "Nome: " + nome;
 		out = out + "\n" + "Forma de Venda: " + formaDeVenda;
+		return out;
 	}
+}
 
-
-	public void cadastrar(TipoVO tipo){
-		// cadastra um tipo		
-	}
-
-	public void alterar(TipoVO tipo){
-		codigo = tipo.codigo; // altera o codigo do tipo
-                nome = tipo.nome; // altera o nome do tipo
-                formaDeVenda = tipo.formaDeVenda; // altera a forma de venda do tipo
-	}
-
-	void deletar(TipoVO tipo){
-		// vai deletar um tipo
-	}
-
-	public TipoVO buscar(String nome){
-		// retorna o tipo que corresponde ao nome passado
-	}
-
-	public TipoVO buscar(int codigo){
-		// retorna o tipo que corresponde ao código passado
-	}
-}	

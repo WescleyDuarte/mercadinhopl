@@ -1,82 +1,84 @@
-package VO;
-import java.util.Calendar;
+package mercadinhopl.model.VO;
 
-public class VendaVO{
+import java.util.*;
+import java.io.*;
+
+public class VendaVO implements Serializable {
+
+	private static final long serialVersionUID = 9L;
 	
-	private int codigo; //int codigoProduto que virá para ser adicionado;
-	private int quantidade;	// quantidade total de itens na compra
+	private int codigo;
+	private Vector<ItemVendaVO> itemVenda = new Vector<ItemVendaVO>();
 	private float valorTotal;
-	private Calendar data;
+	private Calendar data = Calendar.getInstance();
+
+	public VendaVO() {
+
+	}
+
+	public VendaVO(int codigo, ItemVendaVO itemVenda, float valorTotal, Date data) {
+		setCodigo(codigo);
+		setItemVenda(itemVenda);
+		setValorTotal(valorTotal);
+		setData(data);
+	}
 
 	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		if(codigo > 0) {
-			this.codigo = codigo;
-		}
-		else System.out.println("Codigo invalido!")
+	public Vector<ItemVendaVO> getItemVenda() {
+		return itemVenda;
 	}
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		if(quantidade > 0) {
-			this.quantidade = quantidade;
-		}
-		else System.out.println("Quantidade inválida!");
-
+	
 	public float getValorTotal() {
 		return valorTotal;
-	}
-
-	public void setValorTotal(float valorTotal) {
-		if(valorTotal > 0) {
-			this.valorTotal = valorTotal;
-		}
-		else System.out.println("Valor total inválido!");
 	}
 
 	public Calendar getData() {
 		return data;
 	}
 
-	public void setData(Calendar data) {
-		if(data != null) {
-			this.data = data;
+	public void setCodigo(int newCodigo) {
+
+		if(newCodigo > 0) {
+			this.codigo = newCodigo;
 		}
-		else System.out.println("Data invalida!")
+		else System.out.println("Codigo invalido!");
+	}
+
+
+	public void setItemVenda(ItemVendaVO itemVendaNew) {
+
+		if(itemVendaNew != null){
+			this.itemVenda.add(itemVendaNew);
+		}
+	}
+
+	//Valor total = quantidade do item + valor base do produto
+	public void setValorTotal (float valorDeItemVenda) {
+
+		if((valorDeItemVenda)>0){
+
+			this.valorTotal += valorDeItemVenda;
+		
+		}else System.out.println("Valor total inválido!");
+	}
+
+
+	public void setData(Date data) {
+		if(data != null)
+			this.data.setTime(data);
+		else System.out.println("Data invalida!");
 	}
 
 	public String toString() {
 		String out = "";
 
-		out = out + "\n" + "Código: " + codigo;
-		out = out + "\n" + "Quantidade: " + quantidade;
+		out = out + "\n" + "Código de Venda: " + codigo;
+		out = out + "\n" + "Item Venda: " + itemVenda.toString();
 		out = out + "\n" + "Valor Total: " + valorTotal;
-		out = out + "\n" + "Data: " + data;
-	}
-
-	public void cadastrar(VendaVO venda){
-		// cadastra uma venda no BD
-	}
-
-	public void alterar(VendaVO venda){
-		codigo = venda.codigo;
-	      //codigoProduto = venda.codigoProduto;
-		quantidade = venda.quantidade;
-		valorTotal = venda.valorTotal;
-		data = venda.data;
-	}
-
-	public VendaVO buscar(int codigo){
-		// busca a venda correspondente ao código recebido
-	}
-
-	public VendaVO buscar(Calendar data){
-		// busca vendas correspondentes a data recebida
+		out = out + "\n" + "Data: " + data.getTime();
+		return out;
 	}
 }
