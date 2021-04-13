@@ -14,16 +14,39 @@ public class TipoBO {
 	ArrayList<TipoVO> tipos = new ArrayList<TipoVO>();
 
 	public void cadastrarTipo(){
-			
-		System.out.println("\nEntre com um código para o tipo: ");
-		tipo.setCodigo(scanner.nextInt());
-		System.out.println("\nEntre com um nome para o tipo: ");
-		tipo.setNome(scanner.next());
-		System.out.println("\nEntre com uma forma de venda para o tipo: ");
-		tipo.setFormaDeVenda(scanner.next());
 
-		TipoDAO.cadastrar(tipo);	
-	
+		int cod;
+		String nome;
+		String formaDeVenda;
+
+		int controlador = 0;
+
+		while(controlador==0){
+			
+			System.out.println("\nEntre com um código para o tipo: ");
+			cod = (scanner.nextInt());
+			if(cod>0 && tipoDAO.buscarTipoPorCod(cod)== null){
+				tipo.setCodigo(cod);
+				controlador++;
+			}
+			while(controlador ==1){
+				System.out.println("\nEntre com um nome para o tipo: ");
+				nome=(scanner.next());
+				if(tipoDAO.buscarTipo(nome)==null &&  nome != null && nome !=""){
+					tipo.setNome(nome);
+					controlador++;
+				}
+				while(controlador == 2){
+					System.out.println("\nEntre com uma forma de venda para o tipo: ");
+					formaDeVenda=(scanner.next());
+					if(formaDeVenda.equalsIgnoreCase("KG") || formaDeVenda.equalsIgnoreCase("Unidade")){
+						tipo.setFormaDeVenda(formaDeVenda);
+						TipoDAO.cadastrar(tipo);
+						controlador++;
+					}
+				}
+			}
+		}
 	}
 
 
@@ -40,13 +63,14 @@ public class TipoBO {
 
 		System.out.println("\nEntre com um código para o tipo: ");
 		tipoParaAlterar.setCodigo(scanner.nextInt());
+		
 		System.out.println("\nEntre com um nome para o tipo: ");
 		tipoParaAlterar.setNome(scanner.next());
 		System.out.println("\nEntre com uma forma de venda para o tipo: ");
 		tipoParaAlterar.setFormaDeVenda(scanner.next());
 
 		tipos = tipoDAO.buscaExcludente(nomeDoTipo);
-
+	
 		TipoDAO.cadastrarAuxiliar(tipoParaAlterar);
 
 		for(int i=0;tipos.get(i)!=null;i++){
@@ -74,10 +98,8 @@ public class TipoBO {
 		}
 
 
-	public void buscar(){
+	public TipoVO buscar(String nomeTipo){
 		
-		System.out.println("Entre com o nome do tipo a ser buscado: ");
-
-		tipoDAO.buscarTipo(scanner.nextLine());
+		return tipoDAO.buscarTipo(nomeTipo);
 	}
 }
