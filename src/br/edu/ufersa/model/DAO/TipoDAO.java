@@ -1,4 +1,4 @@
-package mercadinhopl.model.DAO;
+    package mercadinhopl.model.DAO;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -88,9 +88,40 @@ public class TipoDAO {
                 e.printStackTrace();
             }
         return null;
+
     
     }
-    // private Vector<ItemVendaVO> itemVenda = new Vector<ItemVendaVO>();
+
+    private int compararCOD; // int de comparação do tipo caso venha precisar
+
+    public TipoVO buscarTipoPorCod (int i){
+        try{
+            File arquivo = new File(filepath);
+           
+            if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
+                FileInputStream arquivoLeitura = new FileInputStream(arquivo);
+                while(arquivoLeitura.available()>0){
+                    ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
+
+                    TipoVO tipo = (TipoVO)objetoLeitura.readObject();
+                    
+                    compararCOD = tipo.getCodigo();
+                    if (i==compararCOD){
+                        arquivoLeitura.close();
+                        objetoLeitura.close();
+                        return tipo;
+                    }                    
+                }
+                System.out.println("Tipo não registrado"); // aviso provisorio
+                arquivoLeitura.close();
+            }
+        }catch(Exception e){
+                e.printStackTrace();
+            }
+        return null;
+     } 
+         
+         // private Vector<ItemVendaVO> itemVenda = new Vector<ItemVendaVO>();
 
     boolean a= true;
     public ArrayList<TipoVO> buscaExcludente(String str){
