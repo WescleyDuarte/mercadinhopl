@@ -1,47 +1,26 @@
-package br.edu.ufersa.model.BO;
+package mercadinhopl.model.BO;
 
 import java.io.*;
 import java.util.*;
 
 
-import br.edu.ufersa.model.VO.*;
-import br.edu.ufersa.model.DAO.*;
+import mercadinhopl.model.VO.*;
+import mercadinhopl.model.DAO.*;
 
 public class CompraBO {
 
 	static Scanner scanner = new Scanner(System.in);
 	CompraVO compra = new CompraVO();
 	CompraDAO compraDAO = new CompraDAO();
-	ItemCompraDAO itemCompra = new ItemCompraDAO();
     
-    public void cadastrar(){
-	
+    public void cadastrarCompra(){
+		
 		System.out.println("Entre com o codigo da compra: ");
 		compra.setCodigo(scanner.nextInt());;
-
-		while(codigoProduto != 4) {
-			System.out.println("(1)Adicionar item");
-			System.out.println("\n(2)Alterar item");
-			System.out.println("\n(3)Remover item");
-			System.out.println("\n(4)Finalizar");
-
-			switch (scanner.nextInt()) {
-				case 1:
-					compra.setItemCompra(compraDAO.adicionarItemCompra(compra.getCodigo()));
-					break;
-				case 2:
-					compra.setItemCompra(compraDAO.alterarItemCompra(compra.getItemCompra()));
-					break;
-				case 3:
-					compra.setItemCompra(compraDAO.removerItemCompra(compra.getItemCompra()));
-					break;
-				case 4:
-					break;
-				default:
-					System.out.println("Numero invalido!");
-			}
-		}
-		
+		System.out.println("Entre com a quantidade de itens da compra: ");
+		compra.setQuantidade(scanner.nextInt());
+		System.out.println("Entre com o valor total da compra: ");
+		compra.setValorTotal(scanner.nextFloat());
 		System.out.println("Data da operação: ");
 
 		Calendar c = Calendar.getInstance();
