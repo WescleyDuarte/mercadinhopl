@@ -1,20 +1,21 @@
 package mercadinhopl.model.DAO;
 
-import java.io.*;
 import mercadinhopl.model.BO.*;
 import mercadinhopl.model.VO.*;
+import java.io.*;
 
-public class ItemCompraDAO {
+public class ItemVendaDAO {
+    
+    
+    private static final String filepath = "ItensVenda.dat";
 
-    private static final String filepath = "ItensCompra.dat";
-
-    public void cadastrar(ItemCompraVO itemCompra) {
+    public void cadastrar(ItemVendaVO itemVenda) {
 
         try{
             FileOutputStream fileOut = new FileOutputStream(filepath,true);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(itemCompra);
+            objectOut.writeObject(itemVenda);
             objectOut.flush();
 
             fileOut.close();
@@ -31,8 +32,8 @@ public class ItemCompraDAO {
 
             while(fileIn.available() > 0){
                 ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-                ItemCompraVO itemCompra = (ItemCompraVO)objectIn.readObject();
-                System.out.println(itemCompra.toString());
+                ItemVendaVO itemVenda = (ItemVendaVO)objectIn.readObject();
+                System.out.println(itemVenda.toString());
             }
 
             fileIn.close();
@@ -40,5 +41,13 @@ public class ItemCompraDAO {
             e.printStackTrace();
         }
     }
-    
+
+    public void adicionarItemVenda(ItemVendaVO itemVenda) {
+        while(codigoProduto != 0) {
+			System.out.println("Digite a codigo do Produto a ser adicionado: ");
+      		codigoProduto = scanner.nextInt();
+			venda.setItemVenda(itemVenda.adicionarItemVenda(venda.getCodigo(), codigoProduto));
+		}
+        return null;
+    }
 }

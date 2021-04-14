@@ -1,4 +1,4 @@
-package mercadinhopl.model.DAO;
+    package mercadinhopl.model.DAO;
 
 import java.io.*;
 import java.util.ArrayList;

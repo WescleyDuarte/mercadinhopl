@@ -1,21 +1,21 @@
 package mercadinhopl.model.DAO;
-
 import java.io.*;
+import mercadinhopl.model.VO.CaixaVO;
 import java.util.ArrayList;
 
-import mercadinhopl.model.VO.TipoVO;
-
-public class TipoDAO {
-
-    private static final String filepath = "Tipos.dat" ;
-
-    public static void cadastrar  (TipoVO tipo){
+public class CaixaDAO {
+    
+    private static final String filepath = "Caixas.dat";
+    private String compStr; // colocar aqui o buscarCaixa e buscaExcludente
+    boolean a= true; // foi preciso usar, talvez Deus saiba o porquê
+    
+    public void cadastrar(CaixaVO caixa) {
 
         try{
             FileOutputStream fileOut = new FileOutputStream(filepath,true);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(tipo);
+            objectOut.writeObject(caixa);
             objectOut.flush();
 
             fileOut.close();
@@ -23,15 +23,16 @@ public class TipoDAO {
         }catch(Exception e){
             e.printStackTrace();
         }
+
     }
 
-    public static void cadastrarAuxiliar  (TipoVO tipo){
+    public static void cadastrarAuxiliar(CaixaVO caixa){
 
         try{
             FileOutputStream fileOut = new FileOutputStream(filepath);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(tipo);
+            objectOut.writeObject(caixa);
             objectOut.flush();
 
             fileOut.close();
@@ -43,27 +44,21 @@ public class TipoDAO {
 
     public void listar(){
         try{
-        File arquivo = new File(filepath);
-        
-        if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
-            FileInputStream arquivoLeitura = new FileInputStream(arquivo);
-            while(arquivoLeitura.available()>0){
-                ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
-                TipoVO tipo = (TipoVO)objetoLeitura.readObject();
-                System.out.println(tipo.toString());
+            FileInputStream fileIn = new FileInputStream(filepath);
+
+            while(fileIn.available() > 0){
+                ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+                CaixaVO caixa = (CaixaVO)objectIn.readObject();
+                System.out.println(caixa.toString());
             }
-            arquivoLeitura.close();
-            }
+
+            fileIn.close();
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    private String compStr; // String de comparação do tipo caso vou precisar
-
-    //tinha aparecido aqui uma mensagem de erro de algumas coisas que vc tinha testado (acho que ja ta tudo ok) R.
-
-    public TipoVO buscarTipo (String str){
+    public  CaixaVO buscarCaixa (String str){
         try{
             File arquivo = new File(filepath);
            
@@ -72,16 +67,16 @@ public class TipoDAO {
                 while(arquivoLeitura.available()>0){
                     ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
 
-                    TipoVO tipo = (TipoVO)objetoLeitura.readObject();
+                    CaixaVO caixa = (CaixaVO)objetoLeitura.readObject();
                     
-                    compStr = tipo.getnome();
+                    compStr = caixa.getNome();
                     if (compStr.equalsIgnoreCase(str)){
                         arquivoLeitura.close();
                         objetoLeitura.close();
-                        return tipo;
+                        return caixa;
                     }                    
                 }
-                System.out.println("Tipo não registrado"); // aviso provisorio
+                System.out.println("Caixa não registrado"); // aviso provisorio
                 arquivoLeitura.close();
             }
         }catch(Exception e){
@@ -90,15 +85,13 @@ public class TipoDAO {
         return null;
     
     }
-    // private Vector<ItemVendaVO> itemVenda = new Vector<ItemVendaVO>();
 
-    boolean a= true;
-    public ArrayList<TipoVO> buscaExcludente(String str){
+    public ArrayList<CaixaVO> buscaExcludente(String str){
         int i=0;
         try{
             File arquivo = new File(filepath);
 
-            ArrayList<TipoVO> tipos = new ArrayList<TipoVO>();
+            ArrayList<CaixaVO> caixas = new ArrayList<CaixaVO>();
 
             if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
                 FileInputStream arquivoLeitura = new FileInputStream(arquivo);
@@ -106,24 +99,21 @@ public class TipoDAO {
                 while(arquivoLeitura.available()>0){
                     ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
 
-                    TipoVO tipo = (TipoVO)objetoLeitura.readObject();
-                    compStr = tipo.getnome();
+                    CaixaVO caixa = (CaixaVO)objetoLeitura.readObject();
+                    compStr =  caixa.getNome();
 
                     a=compStr.equalsIgnoreCase(str); // fiz assim pq ele n estava aceitando dentro com o boolean
                     System.out.println(a);
-                    if(a==false){
+                        if(a==false){
                             
-                        tipos.add(i,tipo);
-                        i++;
-                            
-                    }  
-                            
-                }
-                
+                            caixas.add(i,caixa);
+                            i++;
+                         }    
+                }                
                 arquivoLeitura.close();
-                if(tipos != null){
-                    System.out.println("Tipo alterado com sucesso");
-                    return tipos;
+                if(caixas != null){
+                    System.out.println("caixa alterado com sucesso");
+                    return caixas;
                     }    
             }
         }catch(Exception e){
@@ -132,5 +122,6 @@ public class TipoDAO {
         return null;
        
     }
-}
 
+
+}

@@ -46,7 +46,7 @@ public class TipoBO {
 		tipoParaAlterar.setFormaDeVenda(scanner.next());
 
 		tipos = tipoDAO.buscaExcludente(nomeDoTipo);
-
+	
 		TipoDAO.cadastrarAuxiliar(tipoParaAlterar);
 
 		for(int i=0;tipos.get(i)!=null;i++){
@@ -74,10 +74,8 @@ public class TipoBO {
 		}
 
 
-	public void buscar(){
+	public TipoVO buscar(String nomeTipo){
 		
-		System.out.println("Entre com o nome do tipo a ser buscado: ");
-
-		tipoDAO.buscarTipo(scanner.nextLine());
+		return tipoDAO.buscarTipo(nomeTipo);
 	}
 }

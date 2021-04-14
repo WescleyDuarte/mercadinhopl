@@ -6,37 +6,30 @@ public class ItemCompraVO implements Serializable{
 
 	private static final long serialVersionUID = 4L;
 
-	private int codigoProduto;
 	private int codigoCompra;
-	private int quantidade;
+	private float quantidade;
+	private ProdutoVO produto;
 
 	public ItemCompraVO() {
 
 	}
 
 	public ItemCompraVO(int codigoProduto, int codigoCompra, int quantidade) {
-		setCodigoProtudo(codigoProduto);
 		setCodigoCompra(codigoCompra);
 		setQuantidade(quantidade);
-	}
-
-	public int getCodigoProduto() {
-		return codigoProduto;
+		setProduto(produto);
 	}
 	
 	public int getCodigoCompra() {
 		return codigoCompra;
 	}
 
-	public int getQuantidade() {
+	public float getQuantidade() {
 		return quantidade;
 	}
 
-	public void setCodigoProtudo(int codigoProduto) {
-		if(codigoProduto > 0) {
-			this.codigoProduto = codigoProduto;
-		}
-		else System.out.println("Codigo do produto invalido!");
+	public ProdutoVO getProduto() {
+		return produto;
 	}
 
 	public void setCodigoCompra(int codigoCompra) {
@@ -53,12 +46,20 @@ public class ItemCompraVO implements Serializable{
 		else System.out.println("Quantidade inválida!");
 	}
 
+	public void setProduto(ProdutoVO produto) {
+		if(produto != null) {
+			
+			this.produto = produto;
+		}
+		else System.out.println("Produto invalido!");
+	}
+
 	public String toString() {
 		String out = "";
 
-		out = out + "\n" + "Codigo Produto: " + codigoProduto;
 		out = out + "\n" + "Codigo Compra: " + codigoCompra;
 		out = out + "\n" + "Quantidade: " + quantidade;
+		out = out + "\n" + "Produto: " + produto.getDescricao();
 		return out;
 	}
 }

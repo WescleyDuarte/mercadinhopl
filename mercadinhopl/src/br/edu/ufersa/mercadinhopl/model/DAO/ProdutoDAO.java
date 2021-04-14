@@ -1,37 +1,39 @@
 package mercadinhopl.model.DAO;
-
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
-import mercadinhopl.model.VO.TipoVO;
+import org.graalvm.compiler.loop.phases.ConvertDeoptimizeToGuardPhase;
 
-public class TipoDAO {
+import mercadinhopl.model.VO.ProdutoVO;
 
-    private static final String filepath = "Tipos.dat" ;
+public class ProdutoDAO{
 
-    public static void cadastrar  (TipoVO tipo){
+    private static final String filepath = "Produtos.dat";
 
-        try{
-            FileOutputStream fileOut = new FileOutputStream(filepath,true);
+    public static void cadastrar (ProdutoVO produto) {
+
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream(filepath, true);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(tipo);
-            objectOut.flush();
-
+            objectOut.writeObject(produto);
             fileOut.close();
             objectOut.close();
-        }catch(Exception e){
+
+            System.out.println("Objeto gravado com sucesso!");            
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void cadastrarAuxiliar  (TipoVO tipo){
+    public static void cadastrarAuxiliar  (ProdutoVO produto){
 
         try{
             FileOutputStream fileOut = new FileOutputStream(filepath);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(tipo);
+            objectOut.writeObject(produto);
             objectOut.flush();
 
             fileOut.close();
@@ -49,8 +51,8 @@ public class TipoDAO {
             FileInputStream arquivoLeitura = new FileInputStream(arquivo);
             while(arquivoLeitura.available()>0){
                 ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
-                TipoVO tipo = (TipoVO)objetoLeitura.readObject();
-                System.out.println(tipo.toString());
+                ProdutoVO produto = (ProdutoVO)objetoLeitura.readObject();
+                System.out.println(produto.toString());
             }
             arquivoLeitura.close();
             }
@@ -59,11 +61,9 @@ public class TipoDAO {
         }
     }
 
-    private String compStr; // String de comparação do tipo caso vou precisar
+    private int codiguin; // codigo de comparação do produto
 
-    //tinha aparecido aqui uma mensagem de erro de algumas coisas que vc tinha testado (acho que ja ta tudo ok) R.
-
-    public TipoVO buscarTipo (String str){
+    public ProdutoVO buscarProdutoPorCodigo (int codigo){
         try{
             File arquivo = new File(filepath);
            
@@ -72,59 +72,53 @@ public class TipoDAO {
                 while(arquivoLeitura.available()>0){
                     ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
 
-                    TipoVO tipo = (TipoVO)objetoLeitura.readObject();
-                    
-                    compStr = tipo.getnome();
-                    if (compStr.equalsIgnoreCase(str)){
+                    ProdutoVO produto = (ProdutoVO)objetoLeitura.readObject();
+                    codiguin = produto.getCodigo();
+                    if (codiguin == codigo){
                         arquivoLeitura.close();
                         objetoLeitura.close();
-                        return tipo;
+                        return produto;
                     }                    
                 }
-                System.out.println("Tipo não registrado"); // aviso provisorio
+                //System.out.println("Produto não registrado"); // aviso provisorio
                 arquivoLeitura.close();
             }
         }catch(Exception e){
                 e.printStackTrace();
-            }
-        return null;
-    
+        }
+        return null;    
     }
-    // private Vector<ItemVendaVO> itemVenda = new Vector<ItemVendaVO>();
 
-    boolean a= true;
-    public ArrayList<TipoVO> buscaExcludente(String str){
+    public ArrayList<ProdutoVO> buscarExcludente(int codigo){
         int i=0;
         try{
             File arquivo = new File(filepath);
 
-            ArrayList<TipoVO> tipos = new ArrayList<TipoVO>();
+            ArrayList<ProdutoVO> produtos = new ArrayList<ProdutoVO>();
 
-            if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
+            if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()) {
                 FileInputStream arquivoLeitura = new FileInputStream(arquivo);
                 
-                while(arquivoLeitura.available()>0){
+                while(arquivoLeitura.available()>0) {
                     ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
 
-                    TipoVO tipo = (TipoVO)objetoLeitura.readObject();
-                    compStr = tipo.getnome();
+                    ProdutoVO produto = (ProdutoVO)objetoLeitura.readObject();
+                    codiguin = produto.getCodigo();
 
-                    a=compStr.equalsIgnoreCase(str); // fiz assim pq ele n estava aceitando dentro com o boolean
-                    System.out.println(a);
-                    if(a==false){
+                    if(codiguin != codigo) {
                             
-                        tipos.add(i,tipo);
+                        produtos.add(i,produto);
                         i++;
-                            
-                    }  
-                            
+                        
+                    }
+                    System.out.println(codiguin);                            
                 }
                 
                 arquivoLeitura.close();
-                if(tipos != null){
+                if(produtos != null) {
                     System.out.println("Tipo alterado com sucesso");
-                    return tipos;
-                    }    
+                    return produtos;
+                }
             }
         }catch(Exception e){
                 e.printStackTrace();
@@ -133,4 +127,3 @@ public class TipoDAO {
        
     }
 }
-
