@@ -10,7 +10,7 @@ public class GerenteDAO {
     
     private static final String filepath = "Gerentes.dat";
     private String compStr; // colocar aqui o buscarCaixa e buscaExcludente
-    boolean a= true; // foi preciso usar, talvez Deus saiba o porquê
+    private boolean a= true; // foi preciso usar, talvez Deus saiba o porquê
     
     public void cadastrar(GerenteVO gerente) {
 
@@ -32,7 +32,7 @@ public class GerenteDAO {
     public static void cadastrarAuxiliar (GerenteVO gerente){
 
         try{
-            FileOutputStream fileOut = new FileOutputStream(filepath);
+            FileOutputStream fileOut = new FileOutputStream(filepath); // não tem true
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
             objectOut.writeObject(gerente);
@@ -126,6 +126,38 @@ public class GerenteDAO {
             }
         return null;
        
+    }
+
+    private long compCPF;
+
+    public GerenteVO validarGCPF (long cpf){
+        try{
+            File arquivo = new File(filepath);
+           
+            if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
+                FileInputStream arquivoLeitura = new FileInputStream(arquivo);
+                while(arquivoLeitura.available()>0){
+                    ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
+
+                    GerenteVO gerente = (GerenteVO)objetoLeitura.readObject();
+                    
+                    compCPF = gerente.getCpf();
+
+                    if (compCPF==cpf){
+                        arquivoLeitura.close();
+                        objetoLeitura.close();
+
+                        return gerente;
+                    }                    
+                }
+                System.out.println(" gerente não registrado");
+                 // aviso provisorio
+                arquivoLeitura.close();
+            }
+        }catch(Exception e){
+                e.printStackTrace();
+            }
+        return null;
     }
 
 }

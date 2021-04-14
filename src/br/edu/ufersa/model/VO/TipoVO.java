@@ -35,24 +35,15 @@ public class TipoVO implements Serializable {
 
 	// SETS
 	public void setCodigo(int codigo) {
-		if(codigo > 0) {
-			this.codigo = codigo;
-		}
-		else System.out.println("Codigo invalido!");
+		this.codigo = codigo;
 	}
 
 	public void setNome(String nome) {
-		if (nome != null && nome != "") {
-			this.nome = nome;
-		}
-		else System.out.println("Nome invalido!");
+		this.nome = nome;
 	}
 
 	public void setFormaDeVenda(String formaDeVenda) {
-		if(formaDeVenda.equalsIgnoreCase("KG") || formaDeVenda.equalsIgnoreCase("Unidade")) {
-			this.formaDeVenda = formaDeVenda;
-		}
-		else System.out.println("Forma de venda invalida!");
+		this.formaDeVenda = formaDeVenda;		
 	}
 
 	// TOSTRING

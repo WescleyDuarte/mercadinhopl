@@ -38,31 +38,19 @@ public class GerenteVO implements Serializable{
 	}
 
 	public void setNome(String nome) {
-		if (nome != null && nome != "") {
 			this.nome = nome;
-		}
-		else System.out.println("Nome invalido!");
 	}
 
 	public void setIdade(int idade) {
-		if(idade > 0) {
 			this.idade = idade;
-		}
-		else System.out.println("Idade inválida!");
 	}
 
 	public void setSexo(String sexo) {
-		if(sexo.equalsIgnoreCase("Masculino") || sexo.equalsIgnoreCase("Feminino")) {
-			this.sexo = sexo;
-		}
-		else System.out.println("Sexo inválido!");
+			this.sexo = sexo;	
 	}
 
 	public void setCpf(long cpf) {
-		if((cpf > 10000000000L) && (cpf < 99999999999L)) {
 			this.cpf = cpf;
-		}
-		else System.out.println("CPF inválido!");
 	}
 
 	public String toString() {
