@@ -1,4 +1,4 @@
-package mercadinhopl.model.VO;
+package br.edu.ufersa.model.VO;
 import java.io.Serializable;
 import java.util.*;
 
@@ -7,7 +7,7 @@ public class CompraVO implements Serializable{
 	static final long serialVersionUID = 2L;
 
 	private int codigo;
-	private int quantidade;
+	private List<ItemCompraVO> itemCompra;
 	private float valorTotal;
 	private Calendar data = Calendar.getInstance();
 
@@ -15,9 +15,9 @@ public class CompraVO implements Serializable{
 
 	}
 
-	public CompraVO(int codigo, int quantidade, float valorTotal, Date data) {
+	public CompraVO(int codigo, ItemCompraVO itemCompra, float valorTotal, Date data) {
 		setCodigo(codigo);
-		setQuantidade(quantidade);
+		setItemCompra(itemCompra);
 		setValorTotal(valorTotal);
 		setData(data);
 	}
@@ -26,8 +26,8 @@ public class CompraVO implements Serializable{
 		return codigo;
 	}
 
-	public int getQuantidade() {
-		return quantidade;
+	public List<ItemCompraVO> getItemCompra() {
+		return itemCompra;
 	}
 
 	public float getValorTotal() {
@@ -45,11 +45,12 @@ public class CompraVO implements Serializable{
 		else System.out.println("Codigo invalido!");
 	}
 
-	public void setQuantidade(int quantidade) {
-		if(quantidade > 0) {
-			this.quantidade = quantidade;
-		}
-		else System.out.println("Quantidade inválida!");
+	public void setItemCompra(ItemCompraVO itemCompraNew) {
+		this.itemCompra.add(itemCompraNew);
+	}
+
+	public void setItemCompra(List<ItemCompraVO> itemCompraNew) {
+		this.itemCompra.addAll(itemCompraNew);
 	}
 
 	public void setValorTotal(float valorTotal) {
@@ -69,7 +70,7 @@ public class CompraVO implements Serializable{
 		String out = "";
 
 		out = out + "\n" + "Código: " + codigo;
-		out = out + "\n" + "Quantidade: " + quantidade;
+		out = out + "\n" + "Itens da compra: " + itemCompra.toString();
 		out = out + "\n" + "Valor Total: " + valorTotal;
 		out = out + "\n" + "Data: " + data.getTime();
 		return out;
