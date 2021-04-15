@@ -6,8 +6,6 @@ import java.util.ArrayList;
 public class CaixaDAO {
     
     private static final String filepath = "Caixas.dat";
-    private String compStr; // colocar aqui o buscarCaixa e buscaExcludente
-    boolean a= true; // foi preciso usar, talvez Deus saiba o porquê
     
     public void cadastrar(CaixaVO caixa) {
 
@@ -58,7 +56,7 @@ public class CaixaDAO {
         }
     }
 
-    public  CaixaVO buscarCaixa (String str){
+    public  CaixaVO buscarCaixa (int id){
         try{
             File arquivo = new File(filepath);
            
@@ -69,8 +67,7 @@ public class CaixaDAO {
 
                     CaixaVO caixa = (CaixaVO)objetoLeitura.readObject();
                     
-                    compStr = caixa.getNome();
-                    if (compStr.equalsIgnoreCase(str)){
+                    if (caixa.getId()==id){
                         arquivoLeitura.close();
                         objetoLeitura.close();
                         return caixa;
@@ -86,7 +83,7 @@ public class CaixaDAO {
     
     }
 
-    public ArrayList<CaixaVO> buscaExcludente(String str){
+    public ArrayList<CaixaVO> buscaExcludente(int id){
         int i=0;
         try{
             File arquivo = new File(filepath);
@@ -100,16 +97,12 @@ public class CaixaDAO {
                     ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
 
                     CaixaVO caixa = (CaixaVO)objetoLeitura.readObject();
-                    compStr =  caixa.getNome();
-
-                    a=compStr.equalsIgnoreCase(str); // fiz assim pq ele n estava aceitando dentro com o boolean
-                    System.out.println(a);
-                        if(a==false){
-                            
+              
+                        if(caixa.getId()!=id){
                             caixas.add(i,caixa);
                             i++;
-                         }    
-                }                
+                        }    
+                }  
                 arquivoLeitura.close();
                 if(caixas != null){
                     System.out.println("caixa alterado com sucesso");
