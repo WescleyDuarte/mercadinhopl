@@ -10,6 +10,11 @@ public class GerenteVO extends UsuarioVO{
 
 	}
 
+	public GerenteVO(String nome,String sexo,int idade,int id,String login,String senha,long cpf){
+		super(nome,sexo,idade,id,login,senha);
+		setCpf(cpf);
+	}
+
 	public long getCpf() {
 		return cpf;
 	}
@@ -20,7 +25,7 @@ public class GerenteVO extends UsuarioVO{
 
 	public String toString() {
 		String out = "";
-
+		out = super.toString();
 		out = out + "\n" + "CPF: " + cpf;
 
 		return out;
