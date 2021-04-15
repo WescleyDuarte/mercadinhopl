@@ -55,7 +55,7 @@ public class UsuarioVO extends PessoaVO {
 	// TOSTRING
 	public String toString() {
 		String out = "";
-
+		out = super.toString();
 		out = out + "\n" + "id: " + id;
 		out = out + "\n" + "Login: " + login;
 		out = out + "\n" + "Senha: " + senha;
