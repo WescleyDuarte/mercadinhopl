@@ -12,57 +12,81 @@ public class CaixaBO {
 	CaixaDAO caixaDAO = new CaixaDAO();
 	CaixaVO caixa = new CaixaVO();
 	ArrayList<CaixaVO> caixas = new ArrayList<CaixaVO>();
+	int controlador = 0;
+	UsuarioDAO usuarioDAO= new UsuarioDAO();
 
-    public void cadastrarCaixa(){
+
+	//precisa ter uma condição onde ele for cadastrar se a opção for caixa então entra aqui
+	//passando o id do usuario
+    public void cadastrarCaixa(int id){
 		
-		System.out.println("Entre com o nome do caixa: ");
-		caixa.setNome(scanner.next());;
-		System.out.println("Entre com a idade do caixa: ");
-		caixa.setIdade(scanner.nextInt());
-		System.out.println("Entre com o sexo do caixa: ");
-		caixa.setSexo(scanner.next());
-		System.out.println("Entre com o salario do caixa: ");
-		caixa.setSalario(scanner.nextFloat());
+		if(usuarioDAO.buscarUsuarioPorID(id)!=null){
 
-		caixaDAO.cadastrar(caixa);
-		caixaDAO.listar();
+			controlador=0;
+			while(controlador==0){
+
+				System.out.println("Entre com o Salario do caixa: ");
+				caixa.setSalario(scanner.nextFloat());		
+				
+				if(caixa.getSalario()>1100){
+					controlador++;
+
+					caixa.setNome(usuarioDAO.buscarUsuarioPorID(id).getNome());
+					caixa.setSexo(usuarioDAO.buscarUsuarioPorID(id).getSexo());
+					caixa.setIdade(usuarioDAO.buscarUsuarioPorID(id).getIdade());
+					caixa.setId(id);
+					caixa.setLogin(usuarioDAO.buscarUsuarioPorID(id).getLogin());
+					caixa.setSenha(usuarioDAO.buscarUsuarioPorID(id).getSenha());
+
+					caixaDAO.cadastrar(caixa);
+				}
+			}
+		
+		}else{
+			System.out.println("\n ID Para relacionar Caixa invalido");
+		}
 	}
 
-	public void alterar(String nomeDoCaixa){
 
-		CaixaVO caixaParaAlterar = new CaixaVO();
+	// ALTERAR E DELETAR É USANDO O ID DO USUARIO QUE O CAIXA HERDA
+	public void alterar(int id){
 
-		CaixaDAO buscador = new CaixaDAO();
+		caixa = caixaDAO.buscarCaixa(id);
 
-		caixaParaAlterar = buscador.buscarCaixa(nomeDoCaixa);
+		if(caixaDAO.buscarCaixa(id)!=null){
+			System.out.println(caixa.toString());
 
-		// fazer o busca tipo do Caixa
-		System.out.println(caixaParaAlterar.toString());
-		
+			System.out.println("digite o novo Salario para o Caixa:");
+			caixa.setSalario(scanner.nextFloat());
 
-		System.out.println("\nDigite o novo Nome para o Caixa: ");
-		caixaParaAlterar.setNome(scanner.next());
-		System.out.println("\nDigite a nova Idade para o Caixa: ");
-		caixaParaAlterar.setIdade(scanner.nextInt());
-		System.out.println("\nDigite o novo Sexo do Caixa: ");
-		caixaParaAlterar.setSexo(scanner.next());
-		System.out.println("\nDigite o novo Salario do Caixa: ");
-		caixaParaAlterar.setNome(scanner.next());
+			if(caixa.getSalario()>=1100){
 
-		caixas = caixaDAO.buscaExcludente(nomeDoCaixa);
+					caixa.setNome(usuarioDAO.buscarUsuarioPorID(id).getNome());
+					caixa.setSexo(usuarioDAO.buscarUsuarioPorID(id).getSexo());
+					caixa.setIdade(usuarioDAO.buscarUsuarioPorID(id).getIdade());
+					caixa.setId(id);
+					caixa.setLogin(usuarioDAO.buscarUsuarioPorID(id).getLogin());
+					caixa.setSenha(usuarioDAO.buscarUsuarioPorID(id).getSenha());
 
-		CaixaDAO.cadastrarAuxiliar(caixaParaAlterar);
 
-		for(int i=0;caixas.get(i)!=null;i++){
+				caixas = caixaDAO.buscaExcludente(id);
 
-			caixaDAO.cadastrar(caixas.get(i));
+				CaixaDAO.cadastrarAuxiliar(caixa);
+
+				for(int i=0;caixas.get(i)!=null;i++){
+
+					caixaDAO.cadastrar(caixas.get(i));
+				}
+			}
+		}else{
+			System.out.println("\n não foi possivil alterar o valor do salario do caixa tente novamente (valor>1100)");
 		}
 		
 	}
 
-	public void deletar(String nomeDoCaixa){
+	public void deletar(int id){
 
-		caixas = caixaDAO.buscaExcludente(nomeDoCaixa);
+		caixas = caixaDAO.buscaExcludente(id);
 
 		
 		for(int i= 0;caixas.get(i)!=null;i++){
@@ -74,7 +98,6 @@ public class CaixaBO {
 					caixaDAO.cadastrar(caixas.get(i));
 				}
 			}
-
 		}
 	
 	// public void buscar (){ //talvez não seja necessário considerar depois
