@@ -13,6 +13,12 @@ public class UsuarioVO extends PessoaVO {
 	public UsuarioVO() {
 
 	}
+	public UsuarioVO(String nome,String sexo, int idade,int id,String login,String senha){
+		super(nome,sexo,idade);
+		setId(id);
+		setLogin(login);
+		setSenha(senha);
+	}
 
 	public UsuarioVO(int id, String login, String senha) {
 		setId(id);
