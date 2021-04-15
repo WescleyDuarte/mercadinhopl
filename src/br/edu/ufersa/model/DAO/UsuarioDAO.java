@@ -88,6 +88,7 @@ public class UsuarioDAO {
     }
 
     private String compStr;
+    
     public UsuarioVO buscarLogin (String login){  // usada pra saber se existe algum login 
                                                   // e pra buscar o usuario e comparar a senha no Login tela
         try{
