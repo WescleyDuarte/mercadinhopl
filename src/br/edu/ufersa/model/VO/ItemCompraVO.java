@@ -58,7 +58,7 @@ public class ItemCompraVO implements Serializable{
 
 		out = out + "\n" + "Codigo Compra: " + codigoCompra;
 		out = out + "\n" + "Quantidade: " + quantidade;
-		out = out + "\n" + "Produto: " + produto.getCodigo() + " " + produto.getDescricao();
+		out = out + "\n" + "Produto: " + produto.getCodigo() + ") " + produto.getDescricao();
 		return out;
 	}
 }

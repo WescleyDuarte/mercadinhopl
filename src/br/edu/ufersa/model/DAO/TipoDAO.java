@@ -1,9 +1,9 @@
-    package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 
 import java.io.*;
 import java.util.ArrayList;
 
-import mercadinhopl.model.VO.TipoVO;
+import br.edu.ufersa.model.VO.TipoVO;
 
 public class TipoDAO {
 

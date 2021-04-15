@@ -1,7 +1,7 @@
-package mercadinhopl.model.BO;
+package br.edu.ufersa.model.BO;
 
-import mercadinhopl.model.VO.*;
-import mercadinhopl.model.DAO.*;
+import br.edu.ufersa.model.VO.*;
+import br.edu.ufersa.model.DAO.*;
 import java.util.*;
 
 public class UsuarioBO {

@@ -1,12 +1,12 @@
-package mercadinhopl.model.BO;
+package br.edu.ufersa.model.BO;
 
 import java.util.*;
-import java.io.*;
-import mercadinhopl.model.VO.*;
-import mercadinhopl.model.DAO.*;
+//import java.io.*;
+import br.edu.ufersa.model.VO.*;
+import br.edu.ufersa.model.DAO.*;
 
 public class VendaBO {
-    
+    int m;
 	static Scanner scanner = new Scanner(System.in);
 	VendaVO venda = new VendaVO();
 	VendaDAO vendaDAO = new VendaDAO();
@@ -14,37 +14,39 @@ public class VendaBO {
 	ProdutoVO produto = new ProdutoVO();
 	ProdutoDAO produtoDAO = new ProdutoDAO();
     
-	int codigoProduto;
-    public void cadastrarVenda(VendaVO venda){
+    public void cadastrar(){
 		
 		System.out.println("Entre com o codigo da venda: ");
 		venda.setCodigo(scanner.nextInt());
 
-		while(codigoProduto != 0) {
-			System.out.println("Digite a codigo do Produto a ser adicionado:");
-      		codigoProduto = scanner.nextInt();
-			venda.setItemVenda(itemVenda.adicionarItemVenda(venda.getCodigo(), codigoProduto));
-		}	
+		while(m != 4) {
+			System.out.println("(1)Adicionar item");
+			System.out.println("\n(2)Alterar item");
+			System.out.println("\n(3)Remover item");
+			System.out.println("\n(4)Finalizar");
+			m = scanner.nextInt();
+			switch (m) {
+				case 1:
+					venda.setItemVenda(itemVenda.adicionarItemVenda(venda.getCodigo()));
+					break;
+				case 2:
+					venda.setItemVenda(itemVenda.alterarItemVenda(venda.getItemVenda()));
+					break;
+				case 3:
+					venda.setItemVenda(itemVenda.removerItemVenda(venda.getItemVenda()));
+					break;
+				case 4:
+					break;
+				default:
+					System.out.println("Numero invalido!");
+			}
+		}
 
 		System.out.println("Data da operação: ");
 		Calendar c = Calendar.getInstance();
 		venda.setData(c.getTime());
-		System.out.println(c.getTime());
 		
 		vendaDAO.cadastrar(venda);
-		vendaDAO.listar();
 
 	}
-
-	public void alterar(VendaVO venda){
-		// altera no arquivo
-	}
-
-	/*public VendaVO buscar(int codigo){
-		// busca a venda correspondente ao código recebido
-	}
-
-	public VendaVO buscar(Calendar data){
-		// busca vendas correspondentes a data recebida
-	}*/
 }

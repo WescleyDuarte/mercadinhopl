@@ -7,7 +7,7 @@ public class CompraVO implements Serializable{
 	static final long serialVersionUID = 2L;
 
 	private int codigo;
-	private List<ItemCompraVO> itemCompra;
+	private List<ItemCompraVO> itemCompra = new ArrayList<ItemCompraVO>();
 	private float valorTotal;
 	private Calendar data = Calendar.getInstance();
 
@@ -15,7 +15,7 @@ public class CompraVO implements Serializable{
 
 	}
 
-	public CompraVO(int codigo, ItemCompraVO itemCompra, float valorTotal, Date data) {
+	public CompraVO(int codigo, List<ItemCompraVO> itemCompra, float valorTotal, Date data) {
 		setCodigo(codigo);
 		setItemCompra(itemCompra);
 		setValorTotal(valorTotal);
@@ -43,10 +43,6 @@ public class CompraVO implements Serializable{
 			this.codigo = codigo;
 		}
 		else System.out.println("Codigo invalido!");
-	}
-
-	public void setItemCompra(ItemCompraVO itemCompraNew) {
-		this.itemCompra.add(itemCompraNew);
 	}
 
 	public void setItemCompra(List<ItemCompraVO> itemCompraNew) {

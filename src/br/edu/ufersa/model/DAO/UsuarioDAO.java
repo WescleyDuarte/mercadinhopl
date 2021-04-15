@@ -1,8 +1,8 @@
-package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 
 import java.io.*;
 import java.util.*;
-import mercadinhopl.model.VO.*;
+import br.edu.ufersa.model.VO.*;
 
 
 public class UsuarioDAO {

@@ -1,8 +1,6 @@
-package mercadinhopl.model.BO;
-import mercadinhopl.model.DAO.ProdutoDAO;
-import mercadinhopl.model.DAO.TipoDAO;
-import mercadinhopl.model.VO.ProdutoVO;
-import mercadinhopl.model.VO.TipoVO;
+package br.edu.ufersa.model.BO;
+import br.edu.ufersa.model.DAO.*;
+import br.edu.ufersa.model.VO.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;

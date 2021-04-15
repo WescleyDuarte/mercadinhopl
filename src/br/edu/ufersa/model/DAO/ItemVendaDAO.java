@@ -1,11 +1,17 @@
-package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 
-/*import mercadinhopl.model.BO.*;
-import mercadinhopl.model.VO.*;
-import java.io.*;*/
+
+import br.edu.ufersa.model.VO.*;
+import java.io.*;
 
 public class ItemVendaDAO {
+
+    private static final String filepath = "ItensVenda.dat";
     
+    VendaVO venda = new VendaVO();
+    ProdutoVO produto = new ProdutoVO();
+    ProdutoDAO produtoDAO = new ProdutoDAO();
+
     /*
     private static final String filepath = "ItensVenda.dat";
 
@@ -42,4 +48,29 @@ public class ItemVendaDAO {
         }
     }
     */
+
+    public ItemVendaVO buscarItemVenda(int codigo) {
+        try {
+            File file = new File(filepath);
+
+            if(file.exists() && file.isFile() && file.canRead()) {
+                FileInputStream fileIn = new FileInputStream(filepath);
+                while(fileIn.available() > 0) {
+                    ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+                    ItemVendaVO itemVenda = (ItemVendaVO)objectIn.readObject();
+                    produto = produtoDAO.buscarProdutoPorCodigo(codigo);
+                    if(produto.getCodigo() == codigo) {
+                        fileIn.close();
+                        objectIn.close();
+                        return itemVenda;
+                    }
+                }
+                fileIn.close();
+            }else System.out.println("Erro no arquivo, item nao pode ser buscado!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

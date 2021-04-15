@@ -1,4 +1,4 @@
-package mercadinhopl.model.VO;
+package br.edu.ufersa.model.VO;
 
 import java.io.Serializable;
 

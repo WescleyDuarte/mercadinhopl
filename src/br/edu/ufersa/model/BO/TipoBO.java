@@ -1,9 +1,9 @@
-package mercadinhopl.model.BO;
+package br.edu.ufersa.model.BO;
 
-import java.io.*;
+//import java.io.*;
 import java.util.*;
-import mercadinhopl.model.VO.*;
-import mercadinhopl.model.DAO.*;
+import br.edu.ufersa.model.VO.*;
+import br.edu.ufersa.model.DAO.*;
 
 
 public class TipoBO {

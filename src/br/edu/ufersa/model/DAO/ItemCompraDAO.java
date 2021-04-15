@@ -1,16 +1,16 @@
 package br.edu.ufersa.model.DAO;
 
 import java.io.*;
-import java.util.*;
+//import java.util.*;
 
-import br.edu.ufersa.model.BO.*;
+//import br.edu.ufersa.model.BO.*;
 import br.edu.ufersa.model.VO.*;
-import br.edu.ufersa.model.DAO.*;
+//import br.edu.ufersa.model.DAO.*;
 
 public class ItemCompraDAO {
 
     CompraVO compra = new CompraVO();
-    CompraDAO compraDAO = new CompraDAO();
+    //CompraDAO compraDAO = new CompraDAO();
     ProdutoVO produto = new ProdutoVO();
     ProdutoDAO produtoDAO = new ProdutoDAO();
 
@@ -81,10 +81,12 @@ public class ItemCompraDAO {
                         return itemCompra;
                     }
                 }
+                fileIn.close();
             }else System.out.println("Erro no arquivo, item nao pode ser buscado!");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     /*public List<ItemCompraVO> buscarExcludente(int codigoCompra, int codigoProduto) {

@@ -1,6 +1,6 @@
-package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 import java.io.*;
-import mercadinhopl.model.VO.CaixaVO;
+import br.edu.ufersa.model.VO.*;
 import java.util.ArrayList;
 
 public class CaixaDAO {

@@ -1,10 +1,8 @@
-package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 import java.io.*;
 import java.util.*;
 
-import org.graalvm.compiler.loop.phases.ConvertDeoptimizeToGuardPhase;
-
-import mercadinhopl.model.VO.ProdutoVO;
+import br.edu.ufersa.model.VO.ProdutoVO;
 
 public class ProdutoDAO{
 

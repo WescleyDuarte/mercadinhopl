@@ -40,7 +40,7 @@ public class CompraDAO {
 
     public CompraVO buscarCompra(int codigo) {
         try {
-            File file = new File();
+            File file = new File(filepath);
 
             if(file.exists() && file.isFile() && file.canRead()) {
                 FileInputStream fileIn = new FileInputStream(filepath);
@@ -49,15 +49,17 @@ public class CompraDAO {
 
                     CompraVO compra = (CompraVO)objectIn.readObject();
 
-                    if(compra.getCodigoProduto() == codigo) {
+                    if(compra.getCodigo() == codigo) {
                         fileIn.close();
                         objectIn.close();
                         return compra;
                     }
                 }
+                fileIn.close();
             }else System.out.println("Erro no arquivo, compra nao pode ser buscada!");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

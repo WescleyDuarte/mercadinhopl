@@ -1,4 +1,4 @@
-package mercadinhopl.model.VO;
+package br.edu.ufersa.model.VO;
 
 import java.util.*;
 import java.io.*;
@@ -8,7 +8,7 @@ public class VendaVO implements Serializable {
 	private static final long serialVersionUID = 9L;
 	
 	private int codigo;
-	private Vector<ItemVendaVO> itemVenda = new Vector<ItemVendaVO>();
+	private List<ItemVendaVO> itemVenda = new ArrayList<ItemVendaVO>();
 	private float valorTotal;
 	private Calendar data = Calendar.getInstance();
 
@@ -16,7 +16,7 @@ public class VendaVO implements Serializable {
 
 	}
 
-	public VendaVO(int codigo, ItemVendaVO itemVenda, float valorTotal, Date data) {
+	public VendaVO(int codigo, List<ItemVendaVO> itemVenda, float valorTotal, Date data) {
 		setCodigo(codigo);
 		setItemVenda(itemVenda);
 		setValorTotal(valorTotal);
@@ -27,7 +27,7 @@ public class VendaVO implements Serializable {
 		return codigo;
 	}
 
-	public Vector<ItemVendaVO> getItemVenda() {
+	public List<ItemVendaVO> getItemVenda() {
 		return itemVenda;
 	}
 	
@@ -47,12 +47,8 @@ public class VendaVO implements Serializable {
 		else System.out.println("Codigo invalido!");
 	}
 
-
-	public void setItemVenda(ItemVendaVO itemVendaNew) {
-
-		if(itemVendaNew != null){
-			this.itemVenda.add(itemVendaNew);
-		}
+	public void setItemVenda(List<ItemVendaVO> itemVendaNew) {
+		this.itemVenda.addAll(itemVendaNew);
 	}
 
 	//Valor total = quantidade do item + valor base do produto

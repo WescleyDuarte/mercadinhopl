@@ -1,9 +1,9 @@
-package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 
-import java.util.*;
+//import java.util.*;
 import java.io.*;
-import mercadinhopl.model.BO.*;
-import mercadinhopl.model.VO.*;
+//import br.edu.ufersa.model.BO.*;
+import br.edu.ufersa.model.VO.*;
 
 public class VendaDAO {
     

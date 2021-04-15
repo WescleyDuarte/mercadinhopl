@@ -1,8 +1,7 @@
-package mercadinhopl.model.VO;
+package br.edu.ufersa.model.VO;
 
-import java.io.*;
 
-public class UsuarioVO implements Serializable {
+public class UsuarioVO extends PessoaVO {
 
 	private static final long serialVersionUID = 8L;
 

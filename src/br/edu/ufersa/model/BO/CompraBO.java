@@ -42,23 +42,14 @@ public class CompraBO {
 			}
 		}
 		
-		System.out.println("Data da operação: ");
+		for(int i = 0; i < compra.getItemCompra().size(); i++) {
+			compra.setValorTotal(compra.getItemCompra().get(i).getQuantidade() * compra.getItemCompra().get(i).getProduto().getValor());
+		}
 
 		Calendar c = Calendar.getInstance();
 		compra.setData(c.getTime());
-		System.out.println(c.getTime());
 		
 		compraDAO.cadastrar(compra);
 		System.out.println(compra.toString());
-	}
-	public void deletar(CompraVO compra){
-		//Deletar do BD.
-
-	}
-
-	
-	public void alterar(CompraVO compra){ 
-		//alterar os dados e enviar novamente para o BD
-        
 	}
 }

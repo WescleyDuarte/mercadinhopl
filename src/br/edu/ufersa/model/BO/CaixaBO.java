@@ -1,10 +1,10 @@
-package mercadinhopl.model.BO;
+package br.edu.ufersa.model.BO;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import mercadinhopl.model.DAO.CaixaDAO;
-import mercadinhopl.model.VO.CaixaVO;
+import br.edu.ufersa.model.DAO.*;
+import br.edu.ufersa.model.VO.*;
 
 public class CaixaBO {
 

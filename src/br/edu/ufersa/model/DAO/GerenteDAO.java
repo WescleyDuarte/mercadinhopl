@@ -1,16 +1,15 @@
-package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 
-import mercadinhopl.model.VO.*;
+import br.edu.ufersa.model.VO.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class GerenteDAO {
     
     private static final String filepath = "Gerentes.dat";
-    private long compCPF; // colocar aqui o buscarCaixa e buscaExcludente
+    private String compStr; // colocar aqui o buscarCaixa e buscaExcludente
     private boolean a= true; // foi preciso usar, talvez Deus saiba o porquê
     
     public void cadastrar(GerenteVO gerente) {
@@ -63,7 +62,7 @@ public class GerenteDAO {
     }
 
     
-    public  GerenteVO buscarGerente(long cpfDoGerente){
+    public  GerenteVO buscarGerente(String str){
         try{
             File arquivo = new File(filepath);
            
@@ -74,8 +73,8 @@ public class GerenteDAO {
 
                     GerenteVO gerente = (GerenteVO)objetoLeitura.readObject();
                     
-                    compCPF = gerente.getCpf();
-                    if (compCPF==cpfDoGerente){
+                    compStr = gerente.getNome();
+                    if (compStr.equalsIgnoreCase(str)){
                         arquivoLeitura.close();
                         objetoLeitura.close();
                         return  gerente;
@@ -92,12 +91,12 @@ public class GerenteDAO {
     
     }
 
-    public List<GerenteVO> buscaExcludente(long cpfDoGerente){
-    int i=0;
+    public ArrayList<GerenteVO> buscaExcludente(String str){
+        int i=0;
         try{
             File arquivo = new File(filepath);
 
-            List<GerenteVO> gerentes = new ArrayList<GerenteVO>();
+            ArrayList<GerenteVO> gerentes = new ArrayList<GerenteVO>();
 
             if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
                 FileInputStream arquivoLeitura = new FileInputStream(arquivo);
@@ -106,10 +105,11 @@ public class GerenteDAO {
                     ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
 
                     GerenteVO gerente = (GerenteVO)objetoLeitura.readObject();
-                    compCPF =  gerente.getCpf();
-      
+                    compStr =  gerente.getNome();
+
+                    a=compStr.equalsIgnoreCase(str); // fiz assim pq ele n estava aceitando dentro com o boolean
                     System.out.println(a);
-                        if(compCPF!=cpfDoGerente){
+                        if(a==false){
                             
                             gerentes.add(i,gerente);
                             i++;
@@ -117,7 +117,7 @@ public class GerenteDAO {
                 }                
                 arquivoLeitura.close();
                 if(gerentes != null){
-                    System.out.println("Gerentes encontrados com sucesso");
+                    System.out.println("Gerente alterado com sucesso");
                     return gerentes;
                     }    
             }
@@ -127,4 +127,37 @@ public class GerenteDAO {
         return null;
        
     }
+
+    private long compCPF;
+
+    public GerenteVO validarGCPF (long cpf){
+        try{
+            File arquivo = new File(filepath);
+           
+            if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
+                FileInputStream arquivoLeitura = new FileInputStream(arquivo);
+                while(arquivoLeitura.available()>0){
+                    ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
+
+                    GerenteVO gerente = (GerenteVO)objetoLeitura.readObject();
+                    
+                    compCPF = gerente.getCpf();
+
+                    if (compCPF==cpf){
+                        arquivoLeitura.close();
+                        objetoLeitura.close();
+
+                        return gerente;
+                    }                    
+                }
+                System.out.println(" gerente não registrado");
+                 // aviso provisorio
+                arquivoLeitura.close();
+            }
+        }catch(Exception e){
+                e.printStackTrace();
+            }
+        return null;
+    }
+
 }
