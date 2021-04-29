@@ -1,17 +1,13 @@
-package mercadinhopl.model.DAO;
+package br.edu.ufersa.model.DAO;
 
-import mercadinhopl.model.VO.*;
-
+import br.edu.ufersa.model.VO.*;
+//import java.util.List;
 import java.io.*;
 import java.util.ArrayList;
 
-
 public class GerenteDAO {
     
-    private static final String filepath = "Gerentes.dat";
-    private String compStr; // colocar aqui o buscarCaixa e buscaExcludente
-    boolean a= true; // foi preciso usar, talvez Deus saiba o porquê
-    
+    private static final String filepath = "Gerentes.dat";    
     public void cadastrar(GerenteVO gerente) {
 
         try{
@@ -32,7 +28,7 @@ public class GerenteDAO {
     public static void cadastrarAuxiliar (GerenteVO gerente){
 
         try{
-            FileOutputStream fileOut = new FileOutputStream(filepath);
+            FileOutputStream fileOut = new FileOutputStream(filepath); // nÃ£o tem true
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
             objectOut.writeObject(gerente);
@@ -62,7 +58,7 @@ public class GerenteDAO {
     }
 
     
-    public  GerenteVO buscarGerente(String str){
+    public  GerenteVO buscarGerente(int id){
         try{
             File arquivo = new File(filepath);
            
@@ -73,14 +69,14 @@ public class GerenteDAO {
 
                     GerenteVO gerente = (GerenteVO)objetoLeitura.readObject();
                     
-                    compStr = gerente.getNome();
-                    if (compStr.equalsIgnoreCase(str)){
+                   
+                    if (gerente.getId()==id){
                         arquivoLeitura.close();
                         objetoLeitura.close();
                         return  gerente;
                     }                    
                 }
-                System.out.println(" gerente não registrado");
+                System.out.println(" gerente nÃ£o registrado");
                  // aviso provisorio
                 arquivoLeitura.close();
             }
@@ -91,7 +87,38 @@ public class GerenteDAO {
     
     }
 
-    public ArrayList<GerenteVO> buscaExcludente(String str){
+    public  GerenteVO buscarLoginGerente(String str){
+        try{
+            File arquivo = new File(filepath);
+           
+            if (arquivo.exists() && arquivo.isFile() && arquivo.canRead()){
+                FileInputStream arquivoLeitura = new FileInputStream(arquivo);
+                while(arquivoLeitura.available()>0){
+                    ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
+
+                    GerenteVO gerente = (GerenteVO)objetoLeitura.readObject();
+                    
+                   
+                    if (gerente.getLogin().equalsIgnoreCase(str)){
+                        arquivoLeitura.close();
+                        objetoLeitura.close();
+                        return  gerente;
+                    }                    
+                }
+                System.out.println(" gerente nÃ£o registrado");
+                 // aviso provisorio
+                arquivoLeitura.close();
+            }
+        }catch(Exception e){
+                e.printStackTrace();
+            }
+        return null;
+    
+    }
+
+
+
+    public ArrayList<GerenteVO> buscaExcludente(int id){
         int i=0;
         try{
             File arquivo = new File(filepath);
@@ -105,11 +132,8 @@ public class GerenteDAO {
                     ObjectInputStream objetoLeitura = new ObjectInputStream(arquivoLeitura);
 
                     GerenteVO gerente = (GerenteVO)objetoLeitura.readObject();
-                    compStr =  gerente.getNome();
-
-                    a=compStr.equalsIgnoreCase(str); // fiz assim pq ele n estava aceitando dentro com o boolean
-                    System.out.println(a);
-                        if(a==false){
+                    
+                        if(gerente.getId()!=id){
                             
                             gerentes.add(i,gerente);
                             i++;
@@ -125,7 +149,5 @@ public class GerenteDAO {
                 e.printStackTrace();
             }
         return null;
-       
     }
-
 }
