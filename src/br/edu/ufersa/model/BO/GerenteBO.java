@@ -1,66 +1,204 @@
-package mercadinhopl.model.BO;
+package br.edu.ufersa.model.BO;
 
-import mercadinhopl.model.VO.*;
-
+import br.edu.ufersa.model.VO.*;
+import br.edu.ufersa.model.DAO.*;
+import java.util.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import mercadinhopl.model.DAO.GerenteDAO;
+public class GerenteBO extends UsuarioBO{
 
-public class GerenteBO {
+    static Scanner scanner = new Scanner(System.in);
+	private GerenteVO gerente = new GerenteVO();
+	private	GerenteDAO gerenteDAO = new GerenteDAO();
+	private ArrayList<GerenteVO> gerentes = new ArrayList<GerenteVO>();
+    private int controlador;
+	//private UsuarioDAO usuarioDAO = new UsuarioDAO();
+	private CaixaDAO caixaDAO = new CaixaDAO();
 
-	static Scanner scanner = new Scanner(System.in);
-	GerenteVO gerente = new GerenteVO();
-	GerenteDAO gerenteDAO = new GerenteDAO();
-	ArrayList<GerenteVO> gerentes = new ArrayList<GerenteVO>();
-    
-    public void cadastrarGerente() {
 
-		System.out.println("Entre com o nome do gerente: ");
-		gerente.setNome(scanner.next());
-		System.out.println("Entre com a idade do gerente: ");
-		gerente.setIdade(scanner.nextInt());
-		System.out.println("Entre com o sexo do gerente: ");
-		gerente.setSexo(scanner.next());
-		System.out.println("Entre com o CPF do gerente: ");
-		gerente.setCpf(scanner.nextLong());
 
-		gerenteDAO.cadastrar(gerente);
-		gerenteDAO.listar();
-	}
+    @Override
+    public void cargo(){
+        //Aqui teremos condição para relaização de alteração na nota( ou outra opção mais detalhada) // precisamos da interface grafica  para utilizar melhor
+    }
 
-	public void alterar(String nomeDoGerente){
-		GerenteVO gerenteParaAlterar = new GerenteVO();
 
-		GerenteDAO buscador = new GerenteDAO();
 
-		gerenteParaAlterar = buscador.buscarGerente(nomeDoGerente);
+    //Duvida aqui é fazer o BO de cada um e dale aqui? ou fazer tudo so em GERENTE E CAIXA?
+	//ver o antigo BO do Usuario porque talvez precisamos dele ai altera aqui o cadastro (lembrar de alterar o controlador)
+	// ou se no logi ele busca so esses campos para confirmar 
+	// me parece diminuir coisas guardando tudo apenas em Caixa e Gerente
 
-		// fazer o busca tipo do Caixa
-		System.out.println(gerenteParaAlterar.toString());
-		
+    public void cadastrarGerente() { //melhorar o tratamento futuramento com as outras opÃ§Ãµes de polimofismo
+				
+			controlador=0;
+			while(controlador!=7){
 
-		System.out.println("\nDigite o novo Nome para o Caixa: ");
-		gerenteParaAlterar.setNome(scanner.next());
-		System.out.println("\nDigite a nova Idade para o Caixa: ");
-		gerenteParaAlterar.setIdade(scanner.nextInt());
-		System.out.println("\nDigite o novo Sexo do Caixa: ");
-		gerenteParaAlterar.setSexo(scanner.next());
-		System.out.println("\nDigite o novo Salario do Caixa: ");
-		gerenteParaAlterar.setNome(scanner.next());
+				if(controlador==0){
+					System.out.println("\nDigite o CPF do Gerente");
+					gerente.setCpf(scanner.nextLong());
 
-		gerentes = gerenteDAO.buscaExcludente(nomeDoGerente);
+					if( gerente.getCpf()> 10000000000L && gerente.getCpf() < 99999999999L){
+						controlador++;
+					}
 
-		GerenteDAO.cadastrarAuxiliar(gerenteParaAlterar);
+				if(controlador==1){
+					System.out.println("\nDigite o Nome do Gerente");
+					gerente.setNome(scanner.next());
+				}
 
-		for(int i=0; gerentes.get(i)!=null;i++){
+					if(gerente.getNome() != null && gerente.getNome()!=""){
+					controlador ++;
+					}
 
-			gerenteDAO.cadastrar(gerentes.get(i));
+				if(controlador==2){
+						System.out.println("\nDigite o Sexo do Gerente");
+						gerente.setSexo(scanner.next());
+
+					}
+
+					if(gerente.getSexo().equalsIgnoreCase("Masculino") || gerente.getSexo().equalsIgnoreCase("Feminino")){
+                    	controlador++;
+                    }
+
+				if(controlador==3){
+						System.out.println("\nDigite o Idade do Gerente");
+						gerente.setIdade(scanner.nextInt());
+
+					}
+					if(gerente.getIdade()>0){
+						controlador++;
+					}
+
+				if(controlador==4){
+					System.out.println("\nDigite o ID do Gerente");
+					gerente.setId(scanner.nextInt());
+
+				}
+					if(gerenteDAO.buscarGerente(gerente.getId())==null && caixaDAO.buscarCaixa(gerente.getId())==null && gerente.getId()!=0 && gerente.getId()>0){ 
+						controlador++;
+					}
+				
+					// ESTOU EDITANDO AQUI AINDA
+				if(controlador==5){
+					System.out.println("\nDigite o Login do Gerente");
+					gerente.setLogin(scanner.next());
+	
+					}
+
+					//Criar uma Busca de Login No gerente e no Caixa
+					if(gerenteDAO.buscarLoginGerente(gerente.getLogin())==null && caixaDAO.buscarLoginCaixa(gerente.getLogin())==null &&gerente.getLogin()!=null && gerente.getLogin()!=""){
+						controlador++;
+					}
+				if(controlador==6){
+					System.out.println("\nDigite o Senha do Gerente");
+					gerente.setSenha(scanner.next());
+				}
+					if(gerente.getSenha()!=null && gerente.getSenha()!=""){
+						controlador++;
+						gerenteDAO.cadastrar(gerente);
+					}
+
+				}
+
+				System.out.println("não foi possivel colocar os dados, insira novamente!");
+			}
 		}
+			
+	
+
+
+	public void alterar(int id){
+		
+		if(gerenteDAO.buscarGerente(id)!=null){
+
+			gerente = gerenteDAO.buscarGerente(id);
+
+			System.out.println(gerente.toString());
+			controlador=0;
+			while(controlador!=7){
+
+				if(controlador==0){
+					System.out.println("\nDigite o CPF do Gerente");
+					gerente.setCpf(scanner.nextInt());
+
+					if( gerente.getCpf()> 10000000000L && gerente.getCpf() < 99999999999L){
+						controlador++;
+					}
+
+				if(controlador==1){
+					System.out.println("\nDigite o Nome do Gerente");
+					gerente.setNome(scanner.next());
+				}
+
+					if(gerente.getNome() != null && gerente.getNome()!=""){
+					controlador ++;
+					}
+
+				if(controlador==2){
+						System.out.println("\nDigite o Sexo do Gerente");
+						gerente.setSexo(scanner.next());
+
+					}
+
+					if(gerente.getSexo().equalsIgnoreCase("Masculino") || gerente.getSexo().equalsIgnoreCase("Feminino")){
+                    	controlador++;
+                    }
+
+				if(controlador==3){
+						System.out.println("\nDigite o Idade do Gerente");
+						gerente.setIdade(scanner.nextInt());
+
+					}
+					if(gerente.getIdade()>0){
+						controlador++;
+					}
+
+				if(controlador==4){
+					System.out.println("\nDigite o ID do Gerente");
+					gerente.setId(scanner.nextInt());
+
+				}
+					if(gerenteDAO.buscarGerente(gerente.getId())==null && caixaDAO.buscarCaixa(gerente.getId())==null && gerente.getId()!=0 && gerente.getId()>0){ 
+						controlador++;
+					}
+				
+					// ESTOU EDITANDO AQUI AINDA
+				if(controlador==5){
+					System.out.println("\nDigite o Login do Gerente");
+					gerente.setLogin(scanner.next());
+	
+					}
+
+					//Criar uma Busca de Login No gerente e no Caixa
+					if(gerenteDAO.buscarLoginGerente(gerente.getLogin())==null && caixaDAO.buscarLoginCaixa(gerente.getLogin())==null &&gerente.getLogin()!=null && gerente.getLogin()!=""){
+						controlador++;
+					}
+				if(controlador==6){
+					System.out.println("\nDigite o Senha do Gerente");
+					gerente.setSenha(scanner.next());
+				}
+					if(gerente.getSenha()!=null && gerente.getSenha()!=""){
+						controlador++;
+					}
+				}
+
+				System.out.println("não foi possivel colocar os dados, insira novamente!");
+			}
+			gerentes = gerenteDAO.buscaExcludente(id);
+
+			GerenteDAO.cadastrarAuxiliar(gerente);
+
+			for(int i=0; gerentes.get(i)!=null;i++){
+				gerenteDAO.cadastrar(gerentes.get(i));
+			}
+
+		}
+				
 	}
 
-	public void deletar(String nomeDoGerente){
-		gerentes = gerenteDAO.buscaExcludente(nomeDoGerente);
+	public void deletar(int id){
+		gerentes = gerenteDAO.buscaExcludente(id);
 
 		
 		for(int i= 0;gerentes.get(i)!=null;i++){
@@ -73,8 +211,4 @@ public class GerenteBO {
 				}
 			}
 	}
-
-	// public void buscar (long cpf){  // estanos vendo se quando for criar as interfaces vamos utilizar
-	// 	// busca o gerente correspondente ao nome recebido
-	// }
 }
