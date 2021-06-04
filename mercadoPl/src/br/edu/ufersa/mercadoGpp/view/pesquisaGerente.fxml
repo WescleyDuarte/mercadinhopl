@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.mercadoGpp.view.Controleps2">
+   <children>
+      <GridPane layoutX="1.0" layoutY="11.0" prefHeight="109.0" prefWidth="1296.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MenuBar prefHeight="25.0" prefWidth="1295.0" GridPane.rowIndex="1">
+              <menus>
+                <Menu mnemonicParsing="false" onAction="#telaVenderG" text="Vender">
+                     <items>
+                        <MenuItem fx:id="telaVenderG" mnemonicParsing="false" text="VenderGerente" />
+                     </items></Menu>
+                <Menu mnemonicParsing="false" onAction="#telaProdutosG" text="Produtos">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#telaProdutosG" text="Tela De Pesquisa e cadastro" />
+                     </items></Menu>
+                <Menu mnemonicParsing="false" onAction="#telasHistoricoG" text="Histórico">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#telasHistoricoG" text="Alterar Produto na NNF" />
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" onAction="#telaComprarG" text="Comprar">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#telaComprarG" text="Comprar produtos" />
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" onAction="#telaCadastrarFuncionario" text="Cadastrar Funcionarios">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#telaCadastrarFuncionario" text="Cadastrar Gerente e Caixa" />
+                     </items></Menu>
+              </menus>
+            </MenuBar>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="87.0">
+                     <image>
+                        <Image url="@logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <Pane layoutX="1159.0" layoutY="11.0" prefHeight="64.0" prefWidth="118.0">
+         <children>
+            <Button layoutX="90.0" layoutY="3.0" mnemonicParsing="false" onAction="#sair" text="Sair" />
+         </children>
+      </Pane>
+      <ScrollPane layoutX="507.0" layoutY="170.0" prefHeight="432.0" prefWidth="765.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="762.0">
+               <children>
+                  <Pane prefHeight="450.0" prefWidth="772.0">
+                     <children>
+                        <TableView fx:id="tabelaProdutosG" prefHeight="432.0" prefWidth="771.0">
+                          <columns>
+                            <TableColumn fx:id="codigoPTG" prefWidth="75.0" text="Código" />
+                            <TableColumn fx:id="nomePTG" prefWidth="196.0" text="Nome" />
+                              <TableColumn fx:id="descricaoPTG" prefWidth="261.3333740234375" text="Descrição" />
+                              <TableColumn fx:id="tipoPTG" prefWidth="94.6666259765625" text="Tipo" />
+                              <TableColumn fx:id="quantidadePTG" prefWidth="64.3333740234375" text="Quantidade" />
+                              <TableColumn fx:id="valorUnidadePTG" prefWidth="61.0" text="Valor Uni." />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <TextField id="PesquisarCodP" fx:id="pesquisarPorProdutoG" layoutX="506.0" layoutY="139.0" prefHeight="25.0" prefWidth="119.0" promptText="PesquisarProduto" />
+      <Pane layoutX="19.0" layoutY="146.0" prefHeight="117.0" prefWidth="290.0">
+         <children>
+            <TextField id="NomeT" fx:id="nomeDoTipo" layoutX="32.0" layoutY="19.0" prefHeight="25.0" prefWidth="119.0" promptText="Nome:" />
+            <TextField id="Forma de VendaT" fx:id="formaDeVenda" layoutX="31.0" layoutY="63.0" prefHeight="25.0" prefWidth="119.0" promptText="Forma de Venda:" />
+            <Label layoutX="32.0" layoutY="-1.0" text="Cadastrar Tipo:" />
+            <Button id="CadastrarT" layoutX="57.0" layoutY="97.0" mnemonicParsing="false" onAction="#cadastrarTipo" style="-fx-background-radius: 15;" text="Cadastrar" />
+            <TextField fx:id="codigoDoTipo" layoutX="188.0" layoutY="19.0" prefHeight="25.0" prefWidth="119.0" promptText="codigo:*" />
+            <Button id="CadastrarT" layoutX="188.0" layoutY="51.0" mnemonicParsing="false" onAction="#alterarTipo" style="-fx-background-radius: 15;" text="Alterar" />
+            <Button id="CadastrarT" layoutX="250.0" layoutY="51.0" mnemonicParsing="false" onAction="#deletarTipo" style="-fx-background-radius: 15;" text="Deletar" />
+         </children>
+      </Pane>
+      <Pane layoutX="17.0" layoutY="280.0" prefHeight="248.0" prefWidth="290.0">
+         <children>
+            <TextField id="DescriçãoP" fx:id="descricaoProduto" layoutX="32.0" layoutY="19.0" prefHeight="25.0" prefWidth="250.0" promptText="Descrição:" />
+            <TextField id="MarcaP" fx:id="marcaDoProduto" layoutX="32.0" layoutY="62.0" prefHeight="25.0" prefWidth="119.0" promptText="Marca:" />
+            <Label layoutX="32.0" layoutY="-1.0" text="Cadastrar Produto.:" />
+            <Button id="CadastrarP" layoutX="182.0" layoutY="145.0" mnemonicParsing="false" onAction="#cadastarProduto" style="-fx-background-radius: 15;" text="Cadastrar" />
+            <TextField id="QuantidadeP" fx:id="quantidadeDoProduto" layoutX="32.0" layoutY="106.0" prefHeight="25.0" prefWidth="119.0" promptText="Quantidade:" />
+            <TextField id="ValorUnidadeP" fx:id="valorUnidadeDoProduto" layoutX="156.0" layoutY="106.0" prefHeight="25.0" prefWidth="119.0" promptText="ValorUnidade:" />
+            <TextField id="SetorP" fx:id="setorDoProduto" layoutX="32.0" layoutY="145.0" prefHeight="25.0" prefWidth="119.0" promptText="Setor:" />
+            <TextField id="TipoP" fx:id="tipoDoProduto" layoutX="156.0" layoutY="62.0" prefHeight="25.0" prefWidth="119.0" promptText="Tipo:" />
+            <TextField id="NomeT" fx:id="codigoDoProduto" layoutX="30.0" layoutY="230.0" prefHeight="25.0" prefWidth="119.0" promptText="codigo:*" />
+         </children>
+      </Pane>
+      <Button id="CadastrarT" layoutX="52.0" layoutY="543.0" mnemonicParsing="false" onAction="#alterarProduto" style="-fx-background-radius: 15;" text="Alterar" />
+      <Label layoutX="38.0" layoutY="625.0" text="*Para Alterar e Deletar é preciso adicionar o codigo do produto ou tipo" />
+      <Button id="CadastrarT" layoutX="120.0" layoutY="543.0" mnemonicParsing="false" onAction="#deletarProduto" style="-fx-background-radius: 15;" text="Deletar " />
+   </children>
+</Pane>

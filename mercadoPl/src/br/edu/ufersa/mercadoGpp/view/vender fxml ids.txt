@@ -1,0 +1,62 @@
+//Vender Caixa
+ @FXML
+    private TextField codigoVC;
+
+    @FXML
+    private TextField quantidadeVC;
+
+    @FXML
+    private TableView<?> tabelaVC;
+
+    @FXML
+    private TableColumn<?, ?> codigoTV;
+
+    @FXML
+    private TableColumn<?, ?> nomeTV;
+
+    @FXML
+    private TableColumn<?, ?> descricaoTV;
+
+    @FXML
+    private TableColumn<?, ?> tipoTV;
+
+    @FXML
+    private TableColumn<?, ?> quantidadeTV;
+
+    @FXML
+    private TableColumn<?, ?> valoruniTV;
+
+    @FXML
+    void adicionarVC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void historicoCaixaMenu(ActionEvent event) {
+
+    }
+
+    @FXML
+    void produtosCaixaMenu(ActionEvent event) {
+
+    }
+
+    @FXML
+    void removerVC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void sair(ActionEvent event) {
+
+    }
+
+    @FXML
+    void venderC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void venderCaixaMenu(ActionEvent event) {
+
+    }

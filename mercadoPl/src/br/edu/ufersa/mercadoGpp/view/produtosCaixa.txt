@@ -1,0 +1,41 @@
+//Produtos Caixa...(ver as opções de menu) .:OBS produtos caixa é pesquisarCaixafxml
+    @FXML
+    private TextField pesquisarProdutoPorNomeOuCodC;
+
+    @FXML
+    private TableColumn<?, ?> codPC;
+
+    @FXML
+    private TableColumn<?, ?> nomePC;
+
+    @FXML
+    private TableColumn<?, ?> descricaoPC;
+
+    @FXML
+    private TableColumn<?, ?> tipoPC;
+
+    @FXML
+    private TableColumn<?, ?> quantidadePC;
+
+    @FXML
+    private TableColumn<?, ?> valorUniPC;
+
+    @FXML
+    void historicoCaixaMenu(ActionEvent event) {
+
+    }
+
+    @FXML
+    void produtosCaixaMenu(ActionEvent event) {
+
+    }
+
+    @FXML
+    void sair(ActionEvent event) {
+
+    }
+
+    @FXML
+    void venderCaixaMenu(ActionEvent event) {
+
+    }

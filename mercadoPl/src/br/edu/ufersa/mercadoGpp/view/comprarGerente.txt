@@ -1,0 +1,42 @@
+//Comprar Gerente
+@FXML
+    private TextField codigoPComprarG;
+
+    @FXML
+    private TextField quantidadePComprarG;
+
+    @FXML
+    private TableView<?> tabelaCompraG;
+
+    @FXML
+    private TableColumn<?, ?> codigoPCompraG;
+
+    @FXML
+    private TableColumn<?, ?> nomePCompraG;
+
+    @FXML
+    private TableColumn<?, ?> descricaoPCompraG;
+
+    @FXML
+    private TableColumn<?, ?> tipoPCompraG;
+
+    @FXML
+    private TableColumn<?, ?> quantidadePCompraG;
+
+    @FXML
+    private TableColumn<?, ?> valorUniCompraG;
+
+    @FXML
+    void adicionarPCompraG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void comprar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void removerPCompraG(ActionEvent event) {
+
+    }

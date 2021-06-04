@@ -1,0 +1,74 @@
+//Historico Gerente
+
+@FXML
+    private MenuBar menuBarGerente;
+
+    @FXML
+    private Menu venderMenuG;
+
+    @FXML
+    private Menu produtosMenuG;
+
+    @FXML
+    private Menu historicoMenuG;
+
+    @FXML
+    private Menu comprarMenuG;
+
+    @FXML
+    private Menu cadastrarMenuG;
+
+    @FXML
+    private TableView<?> tabelaPdaNFHG;
+
+    @FXML
+    private TextField codigoPHG;
+
+    @FXML
+    private TableColumn<?, ?> nomePHG;
+
+    @FXML
+    private TableColumn<?, ?> descricaoPHG;
+
+    @FXML
+    private TextField quantidadePHG;
+
+    @FXML
+    private TableColumn<?, ?> valorUnidadePHG;
+
+    @FXML
+    private TableView<?> tabelanNFG;
+
+    @FXML
+    private TableColumn<?, ?> nNFG;
+
+    @FXML
+    private TextField pesquisarNNFHG;
+
+    @FXML
+    private TextField nNFHG;
+
+    @FXML
+    void adicionarPHG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cancelarNFHG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void gerarNNFHG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void retirarPHG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void sair(ActionEvent event) {
+
+    }

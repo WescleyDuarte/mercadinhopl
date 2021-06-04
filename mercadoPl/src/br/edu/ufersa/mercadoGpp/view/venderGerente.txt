@@ -1,0 +1,43 @@
+
+//Vender Gerente
+@FXML
+    private TextField codigoPVenderG;
+
+    @FXML
+    private TextField quantidadePVenderG;
+
+    @FXML
+    private TableView<?> tabelaVendaG;
+
+    @FXML
+    private TableColumn<?, ?> codigoPVendaG;
+
+    @FXML
+    private TableColumn<?, ?> nomePVendaG;
+
+    @FXML
+    private TableColumn<?, ?> descricaoPVendaG;
+
+    @FXML
+    private TableColumn<?, ?> tipoPVendaG;
+
+    @FXML
+    private TableColumn<?, ?> quantidadePVendaG;
+
+    @FXML
+    private TableColumn<?, ?> valorUniPVendaG;
+
+    @FXML
+    void VenderG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void adicionarPVendaG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void removerPVenderG(ActionEvent event) {
+
+    }

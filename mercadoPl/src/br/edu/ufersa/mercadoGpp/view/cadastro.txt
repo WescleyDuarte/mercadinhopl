@@ -1,0 +1,44 @@
+//Cadastro
+    @FXML
+    private TextField loginCadastro;
+
+    @FXML
+    private TextField nomeCadastro;
+
+    @FXML
+    private TextField sexoCadastro;
+
+    @FXML
+    private TextField idadeCadastro;
+
+    @FXML
+    private TextField salarioCadastro;
+
+    @FXML
+    private TextField cargoCadastro;
+
+    @FXML
+    private TextField idUsuarioCadastro;
+
+    @FXML
+    private PasswordField senhaCadastro;
+
+    @FXML
+    void Voltar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void alterarU(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cadastrarU(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deletarU(ActionEvent event) {
+
+    }

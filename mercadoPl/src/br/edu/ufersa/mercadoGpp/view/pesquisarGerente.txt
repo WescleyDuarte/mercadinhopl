@@ -1,0 +1,110 @@
+
+	//Pesquisar produtos (cadastrar tipo e produto)
+@FXML
+    private TableView<?> tabelaProdutosG;
+
+    @FXML
+    private TableColumn<?, ?> codigoPTG;
+
+    @FXML
+    private TableColumn<?, ?> nomePTG;
+
+    @FXML
+    private TableColumn<?, ?> descricaoPTG;
+
+    @FXML
+    private TableColumn<?, ?> tipoPTG;
+
+    @FXML
+    private TableColumn<?, ?> quantidadePTG;
+
+    @FXML
+    private TableColumn<?, ?> valorUnidadePTG;
+
+    @FXML
+    private TextField pesquisarPorProdutoG;
+
+    @FXML
+    private TextField nomeDoTipo;
+
+    @FXML
+    private TextField formaDeVenda;
+
+    @FXML
+    private TextField codigoDoTipo;
+
+    @FXML
+    private TextField descricaoProduto;
+
+    @FXML
+    private TextField marcaDoProduto;
+
+    @FXML
+    private TextField quantidadeDoProduto;
+
+    @FXML
+    private TextField valorUnidadeDoProduto;
+
+    @FXML
+    private TextField setorDoProduto;
+
+    @FXML
+    private TextField tipoDoProduto;
+
+    @FXML
+    private TextField codigoDoProduto;
+
+    @FXML
+    void alterarProduto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void alterarTipo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cadastarProduto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cadastrarTipo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deletarProduto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deletarTipo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void telaCadastrarFuncionario(ActionEvent event) {
+
+    }
+
+    @FXML
+    void telaComprarG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void telaProdutosG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void telaVenderG(ActionEvent event) {
+
+    }
+
+    @FXML
+    void telasHistoricoG(ActionEvent event) {
+
+    }

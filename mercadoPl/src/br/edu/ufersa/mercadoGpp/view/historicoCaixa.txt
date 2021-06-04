@@ -1,0 +1,64 @@
+//Historico Caixa
+    @FXML
+    private TableView<?> tabelaNFC;
+
+    @FXML
+    private TableColumn<?, ?> codigoPnaNFC;
+
+    @FXML
+    private TableColumn<?, ?> nomePnaNFC;
+
+    @FXML
+    private TableColumn<?, ?> descricaoPnaNFC;
+
+    @FXML
+    private TableColumn<?, ?> quantidadePnaNFC;
+
+    @FXML
+    private TableColumn<?, ?> valorunidadePnaNFC;
+
+    @FXML
+    private TableView<?> tabelaNNFC;
+
+    @FXML
+    private TableColumn<?, ?> nNFC;
+
+    @FXML
+    private TextField pesquisarNFHC;
+
+    @FXML
+    private TextField nNFHC;
+
+    @FXML
+    private TextField codigoPHC;
+
+    @FXML
+    private TextField quantidadePHC;
+
+    @FXML
+    private PasswordField senhaGerenteHC;
+
+    @FXML
+    void adicionarPnaNFC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cancelarNFC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void gerarNFC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void retirarPnaNFC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void sair(ActionEvent event) {
+
+    }
